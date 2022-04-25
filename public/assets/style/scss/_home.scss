@@ -1,0 +1,28 @@
+.homeHeader{
+  height: 100vh;
+  background: url('../img/homeHeaderBg.jpg') center/cover;
+  h1{
+    font-family: Courgette;
+    height: 100%;
+    width: 100%;
+    text-shadow: 0 0 20px black;
+    color: #FFFFFF;
+    @include center;
+    font-size: 5.5vw;
+    animation: 1.5s appear;
+    @media screen and (max-width: 650px){
+      font-size: 7.5vw;
+    }
+  }
+  ul{
+    width: 100%;
+    align-content: center;
+  }
+}
+.homeH2{
+  text-align: center;
+  margin: 100px 0 50px 0;
+}
+
+
+

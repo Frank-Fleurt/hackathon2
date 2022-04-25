@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section>
+        <div class="formClient">
+            <h1>Modifier le client</h1>
+            {{ form(clientForm) }}
+            {% if currentImg is not null %}
+                <div class="img">
+                    <h2>Image actuelle</h2>
+                    <img src="{{ asset('upload_directory/' ~  currentImg.name) }}" alt="" width="250px">*
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

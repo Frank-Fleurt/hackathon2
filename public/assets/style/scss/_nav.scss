@@ -1,0 +1,46 @@
+nav{
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  z-index: 500;
+  &.admin{
+  background: #000;
+  color: #cecece;
+  }
+  &.client{
+    color: white;
+    background: linear-gradient(180deg, #0000008c, transparent);
+  }
+  height: 70px;
+  overflow-y: hidden ;
+  ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    a{
+      font-family: "Segoe UI", sans-serif;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: 0.5s;
+      letter-spacing: 2px;
+      @media screen and (max-width: 850px) {
+        letter-spacing:1px;
+        font-size: 0.85rem;
+      }
+        &:hover{
+      color: #ee4eff;
+      transform: scale(1.1);
+      }
+      .logo{
+        border-radius: 150px;
+        width: 60px;
+        height: 60px;
+        margin-top: 5px;
+        @media screen and (max-width: 850px) {
+        width: 40px;
+        height: 40px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form(userForm) }}
+    <button><a href="{{ path('showUser') }}">Retour a la liste des utilisateurs</a></button>
+{% endblock %}

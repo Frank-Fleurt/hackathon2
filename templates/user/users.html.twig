@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% for user in users %}
+        <h3>{{user.email}}</h3>
+        <h3>{% for userrole in user.roles %}
+            {{ userrole }}
+        {% endfor %}</h3>
+        <button><a href="{{ path('app_user_edit',{'id' : user.id}) }}"><div class="edit">Éditer</div></a></button>
+        <button><a href="{{ path('app_user_delete',{'id' : user.id}) }}"><div class="delete">Supprimer</div></a></button>
+    {% endfor %}
+    <button><a href="{{ path('createUser') }}">Ajouté</a></button>
+{% endblock %}

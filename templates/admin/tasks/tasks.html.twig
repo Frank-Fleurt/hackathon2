@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Calendrier{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" integrity="sha256-5veQuRbWaECuYxwap/IOE/DAwNxgm4ikX7nrgsqYp88=" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('assets/style/calendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/style/style.css') }}">
+    <link rel="icon" href="{{ asset('assets/img/logo.jpg')}}">
+</head>
+<body>
+{% include 'commons/_header.html.twig' %}
+<main>
+    {% block body %}
+
+        <div class="calendar">
+            <div id="calendrier">
+            </div>
+            <button class="links">
+                <a href="{{ path('addTask') }}">Ajouté une tâche</a>
+            </button>
+        </div>
+    {% endblock %}
+</main>
+{% include 'commons/_footer.html.twig' %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js" integrity="sha256-YicH/8aE660iEnJtgll3vT54dJApy3XkYmqNfGVFEzA=" crossorigin="anonymous"></script>
+<script>window.onload= ()=>{
+        let calendarElt = document.querySelector('#calendrier')
+        let calendar  = new FullCalendar.Calendar(calendarElt, {
+            initialView: 'timeGrid',
+            duration:{days: 5},
+            locale:'fr',
+            timeZone: 'Europe/Paris',
+            headerToolbar:{
+                start:'prev,next',
+                center:'title',
+                end:'timeGridDay,timeGridFourDay,dayGridMonth'
+            },
+            views: {
+                timeGridFourDay: {
+                    type: 'timeGrid',
+                    duration: { days: 5 },
+                    buttonText: '5 Jours'
+                }
+            },
+            events:{{ data|raw }},
+            editable: true,
+        })
+        calendar.render();
+    }</script>
+</body>
+</html>

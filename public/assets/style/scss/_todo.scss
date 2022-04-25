@@ -1,0 +1,64 @@
+.calendar {
+  padding-top: 75px;
+  background: url('../img/backgroundClient.jpg') center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  #calendrier {
+    background: white;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .links {
+    background: rgba(0, 0, 0, 0.5);
+    margin: 10px auto;
+    width: 60%;
+    height: 70px;
+    border: rgb(0, 0, 0) 2px solid;
+    border-radius: 5px;
+    transition: 0.5s;
+
+    &:hover {
+      transform: scale(1.1);
+      background: pink;
+    }
+
+    a {
+      color: #FFFFFF;
+    }
+  }
+}
+.formTask {
+  background: url('../img/backgroundClient.jpg') center/cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    width: 50%;
+    padding: 10px 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.47);
+    color: white;
+  }
+
+  form {
+    background: rgba(0, 0, 0, 0.47);
+    width: 50%;
+    margin: 0 auto;
+    color: white;
+    padding: 20px;
+    div {
+      display: grid;
+      grid-auto-columns: 1fr;
+      padding: 5px;
+      input {
+        border-radius: 5px;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+//****************   Fonts   ****************
+
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+//****************   General settings   ****************
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+  scroll-behavior: smooth;
+}
+body{
+  padding-top: 70px;
+}
+body.home{
+  padding-top: 0px;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+img{
+  display: block;
+}
+
+//****************   Mixins   ****************
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//****************   Keyframes   ****************
+
+@keyframes appear {
+  from{
+    opacity: 0;
+    transform: translateY(-75px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

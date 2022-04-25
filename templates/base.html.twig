@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('assets/img/logo.jpg')}}">
+        <link rel="stylesheet" href="{{ asset('assets/style/style.css') }}">
+    </head>
+    <body{% block class %}  {% endblock %}>
+    {% include 'commons/_header.html.twig' %}
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+    {% include 'commons/_footer.html.twig' %}
+    </body>
+</html>

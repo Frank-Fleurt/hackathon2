@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section class="clientList">
+        <h1 class="titleH1">Liste des clients</h1>
+        <div class="clientContainer">
+            {% for client in clients %}
+                <div class="clientCard">
+                    <div class="img">
+                    {% if client.img is not null %}
+                        <img src="{{ asset('upload_directory/' ~ client.img.name) }}" alt="client Img">
+                    {% endif %}
+                    </div>
+                    <h3>Nom: {{ client.name }}</h3>
+                    <span>Age: {{ ages[client.id] }}</span>
+                    {% if client.mail is not null %}
+                        <span>Mail: {{ client.mail }}</span>
+                    {% endif %}
+                    <span>Adresse: {{ client.adress }}</span>
+                    <span>Téléphone: {{ client.tel }}</span>
+                    <div class="options">
+                        <button><a href="{{ path('editClient',{'id' : client.id}) }}"><div class="edit">Éditer</div></a></button>
+                        <button><a href="{{ path('disableClient',{'id' : client.id}) }}"><div class="edit">Supprimer</div></a></button>
+                    </div>
+                </div>
+            {% endfor %}
+        <button class="addClient"><a href="{{ path('addClient') }}">Ajouté un client</a></button>
+        </div>
+    </section>
+{% endblock %}

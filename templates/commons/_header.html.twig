@@ -1,0 +1,21 @@
+<header>
+    <nav {% if is_granted("ROLE_ADMIN") %}class="admin"{% else %}class="client"{% endif %}>
+        <ul>
+            <li><a href="{{ path('home') }}"><img src="{{ asset('assets/img/logo.jpg') }}" alt="logo" class="logo"></a></li>
+            <li><a href="{{ path('home') }}">Accueil</a></li>
+
+            {% if is_granted("ROLE_ADMIN") %}
+                <li><a href="{{ path('showClient') }}">Clients</a></li>
+                <li><a href="{{ path('showTask') }}">Emploi du temps</a></li>
+            {% else %}
+                <li><a href="#activities">Mes activitées</a></li>
+                <li><a href="#contact">Me contacter</a></li>
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <li><a href="{{ path('app_logout') }}">Deconnexion</a></li>
+            {% else %}
+                <li><a href="{{ path('app_login') }}">Connexion</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

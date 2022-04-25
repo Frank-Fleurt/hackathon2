@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% block title %} Les services d'Émilie{% endblock %}
+{% block class %} class="home" {% endblock %}
+{% block body %}
+    <header class="homeHeader">
+        <h1>Les services d'Émilie</h1>
+    </header>
+    </nav>
+    <section id="activities">
+        <h2 class="homeH2">Mes activitées</h2>
+        <div class="homeDoing">
+            <div class="administrativ">
+                <div class="img">
+                    <img src="{{ asset('assets/img/administrativ.png') }}" alt="Admin papers"">
+                </div>
+                <span>Aide administrative</span>
+            </div>
+            <div class="cleaning">
+                <div class="img">
+                    <img src="{{ asset('assets/img/cleaning.png') }}" alt="Cleaning cart"">
+                </div>
+                <span>Aide au ménage</span>
+            </div>
+            <div class="meal">
+                <div class="img">
+                    <img src="{{ asset('assets/img/meal.png') }}" alt="Meal plate"">
+                </div>
+                <span>Préparation des repas</span>
+            </div>
+            <div class="mooving">
+                <div class="img">
+                    <img src="{{ asset('assets/img/mooving.png') }}" alt="Car"">
+                </div>
+                <span>Accompagnement aux déplacement</span>
+            </div>
+        </div>
+        <h2 class="homeH2">Mon secteur</h2>
+        <div id="map"></div>
+        <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVkOh4qfJNHhkRw7UxkDUCbnclm3CEchg&callback=initMap"></script>
+        <script src="{{ asset('assets/js/google.js') }}"></script>
+    </section>
+    <section id="contact">
+        <h2 class="homeH2">Me contacter</h2>
+        <div class="contactContainer">
+            <div class="networks">
+                <h3>Mes reseaux</h3>
+                <div class="facebook">
+                    <span class="facebookLink">Facebook</span>
+                    <img src="{{ asset('assets/img/facebook.png') }}" alt="Facebook logo by Hight Quality Icons">
+                </div>
+                <div class="instagram">
+                    <span class="instagramLink">Instagram</span>
+                    <img src="{{ asset('assets/img/instagram.png') }}" alt="Facebook logo by Hight Quality Icons">
+                </div>
+            </div>
+            <div class="contact">
+            <div class="mail">
+                <span class="mailAdress">Mail</span>
+                <img src="{{ asset('assets/img/email.png') }}" alt="Facebook logo by rukanicon">
+            </div>
+            <div class="phone">
+                <span class="phoneNumber">Téléphone</span>
+                <img src="{{ asset('assets/img/telephone.png') }}" alt="Facebook logo by Freepik">
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}
