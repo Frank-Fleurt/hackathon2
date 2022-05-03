@@ -1,4 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+@keyframes appearFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-75px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+@keyframes appearOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -28,21 +46,12 @@ img {
   display: block;
 }
 
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(-75px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
 nav {
   position: fixed;
   width: 100%;
   top: 0px;
   z-index: 500;
+  overflow-x: hidden;
   height: 70px;
   overflow-y: hidden;
 }
@@ -53,6 +62,78 @@ nav.admin {
 nav.client {
   color: white;
   background: linear-gradient(180deg, #0000008c, transparent);
+}
+nav label input {
+  display: none;
+}
+@media screen and (max-width: 850px) {
+  nav label .menu {
+    position: absolute;
+    right: -100px;
+    top: -100px;
+    width: 200px;
+    height: 200px;
+    background: #FFF;
+    border-radius: 50% 50% 50% 50%;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    box-shadow: 0 0 0 0 #FFF, 0 0 0 0 #FFF;
+    cursor: pointer;
+  }
+  nav label .hamburger {
+    position: absolute;
+    top: 135px;
+    left: 50px;
+    width: 30px;
+    height: 2px;
+    background: #69D2e7;
+    display: block;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+  }
+  nav label .hamburger:after, nav label .hamburger:before {
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #69d2e7;
+  }
+  nav label .hamburger:before {
+    top: -10px;
+  }
+  nav label .hamburger:after {
+    bottom: -10px;
+  }
+  nav label input:checked + .menu {
+    box-shadow: 0 0 0 100vw #FFF, 0 0 0 100vh #FFF;
+    border-radius: 0;
+  }
+  nav label input:checked + .menu .hamburger:after {
+    transform: rotate(90deg);
+    bottom: 0;
+  }
+  nav label input:checked + .menu .hamburger:before {
+    transform: rotate(90deg);
+    top: 0;
+  }
+  nav label input:checked + .menu + ul {
+    opacity: 1;
+  }
+  nav label ul {
+    z-index: 200;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    -webkit-transition: 0.25s 0s ease-in-out;
+    transition: 0.25s 0s ease-in-out;
+  }
 }
 nav ul {
   display: flex;
@@ -65,12 +146,6 @@ nav ul a {
   font-weight: 700;
   transition: 0.5s;
   letter-spacing: 2px;
-}
-@media screen and (max-width: 850px) {
-  nav ul a {
-    letter-spacing: 1px;
-    font-size: 0.85rem;
-  }
 }
 nav ul a:hover {
   color: #ee4eff;
@@ -279,7 +354,7 @@ nav ul a .logo {
   justify-content: center;
   align-items: center;
   font-size: 5.5vw;
-  animation: 1.5s appear;
+  animation: 1.5s appearFromTop;
 }
 @media screen and (max-width: 650px) {
   .homeHeader h1 {
@@ -304,10 +379,14 @@ nav ul a .logo {
   flex-direction: column;
 }
 #activities .homeDoing {
-  width: 100%;
   text-align: center;
-  display: flex;
-  justify-content: space-evenly;
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  gap: 30px 0;
 }
 @media screen and (max-width: 850px) {
   #activities .homeDoing {
@@ -315,7 +394,7 @@ nav ul a .logo {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     justify-items: center;
     gap: 30px 0;
   }
@@ -363,11 +442,136 @@ nav ul a .logo {
 }
 
 #contact {
-  display: flex;
-  flex-wrap: wrap;
+  padding: 0 5px;
+  corlor: white;
 }
-#contact .homeH2 {
-  width: 100vw;
+#contact .contactContainer .networks {
+  position: relative;
+  margin-bottom: 20px;
+}
+#contact .contactContainer .networks div {
+  width: 40px;
+  border-radius: 150px;
+  transition: 0.5s;
+  position: absolute;
+  top: 0px;
+  transform: translateY(-25%);
+  overflow: hidden;
+}
+#contact .contactContainer .networks div:hover {
+  width: 240px;
+}
+#contact .contactContainer .networks div:hover span {
+  opacity: 0;
+  animation: 1s linear 0.5s appearOpacity forwards;
+  display: unset;
+}
+#contact .contactContainer .networks div a {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+#contact .contactContainer .networks div a img {
+  height: 40px;
+}
+#contact .contactContainer .networks div a span {
+  font-family: Courgette;
+  display: none;
+  color: #FFFFFF;
+  transition: 0.5s;
+  margin-left: 30px;
+}
+#contact .contactContainer .networks .facebook {
+  background: linear-gradient(100deg, #021b71 0%, #389dfe 100%);
+  left: 30%;
+}
+#contact .contactContainer .networks .instagram {
+  background: linear-gradient(100deg, #833ab4 0%, #fd1d1d 74%, #fcb045 100%);
+  left: 70%;
+}
+#contact .contact {
+  display: flex;
+  justify-content: flex-start;
+}
+#contact .contact div {
+  width: 50%;
+}
+
+.enregistrement {
+  background: url("../img/homeHeaderBg.jpg") center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.enregistrement section {
+  background: rgba(0, 0, 0, 0.48);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 700px;
+  border-radius: 20px;
+  height: 500px;
+  position: relative;
+}
+.enregistrement section form {
+  color: #FFFFFF;
+  width: 500px;
+  margin: 0 auto;
+}
+.enregistrement section form #user {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.enregistrement section form #user div {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px auto;
+}
+.enregistrement section form #user div label {
+  display: none;
+}
+.enregistrement section form #user div ul {
+  color: red;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  width: 145px;
+  border: 2px solid red;
+  border-radius: 5px;
+}
+.enregistrement section form #user div input {
+  width: 100%;
+}
+.enregistrement section form #user div input::placeholder {
+  text-align: center;
+  width: 100%;
+}
+.enregistrement section form #user div button {
+  left: 50%;
+}
+.enregistrement section .formReturn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.enregistrement section .formReturn .return {
+  bottom: 30px;
+  height: 40px;
+  width: 150px;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  border: black 2px solid;
+  transition: 0.5s;
+  color: #FFFFFF;
+}
+.enregistrement section .formReturn .return:hover {
+  transform: scale(1.1);
+  background: pink;
 }
 
 /*# sourceMappingURL=style.css.map */

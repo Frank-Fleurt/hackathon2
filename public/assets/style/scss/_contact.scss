@@ -1,7 +1,58 @@
 #contact{
-  .homeH2{
-    width: 100vw;
+  padding: 0 5px;
+
+  corlor: white;
+  .contactContainer{
+    .networks{
+      position: relative;
+      margin-bottom: 20px;
+      div{
+        width: 40px;
+        border-radius: 150px;
+        transition: 0.5s;
+        position: absolute;
+        top: 0px;
+        transform: translateY(-25%);
+        overflow: hidden;
+        &:hover{
+          width: 240px;
+        }
+        &:hover span{
+          opacity: 0;
+          animation: 1s linear 0.5s appearOpacity forwards;
+          display: unset;
+        }
+        a{
+          display: flex;
+          align-items: center;
+          height: 40px;
+          img{
+            height: 40px;
+          }
+          span{
+            font-family: Courgette ;
+            display: none;
+            color: #FFFFFF;
+            transition: 0.5s;
+            margin-left: 30px;
+          }
+        }
+      }
+      .facebook{
+        background: linear-gradient(100deg, rgba(2,27,113,1) 0%, rgba(56,157,254,1) 100%);
+        left: 30%;
+      }
+      .instagram{
+        background: linear-gradient(100deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 74%, rgba(252,176,69,1) 100%);
+        left: 70%;
+      }
+    }
   }
-  display: flex;
-  flex-wrap: wrap;
+  .contact{
+    display: flex;
+    justify-content: flex-start;
+    div{
+      width: 50%;
+    }
+  }
 }

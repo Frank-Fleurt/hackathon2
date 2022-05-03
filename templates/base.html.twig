@@ -7,8 +7,9 @@
         <link rel="stylesheet" href="{{ asset('assets/style/style.css') }}">
     </head>
     <body{% block class %}  {% endblock %}>
-    {% include 'commons/_header.html.twig' %}
-    <main>
+    {% block nav %} {% endblock %}
+    {% include 'commons/_nav.html.twig' %}
+    <main {% block page %}  {% endblock %}>
         {% block body %}{% endblock %}
     </main>
     {% include 'commons/_footer.html.twig' %}

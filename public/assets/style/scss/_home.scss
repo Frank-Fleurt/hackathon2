@@ -9,7 +9,7 @@
     color: #FFFFFF;
     @include center;
     font-size: 5.5vw;
-    animation: 1.5s appear;
+    animation: 1.5s appearFromTop;
     @media screen and (max-width: 650px){
       font-size: 7.5vw;
     }

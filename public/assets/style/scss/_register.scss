@@ -1,0 +1,72 @@
+.enregistrement{
+  background: url('../img/homeHeaderBg.jpg') center/cover;
+  height: 100vh;
+  @include center;
+  section{
+    background: rgba(0, 0, 0, 0.48);
+    @include center;
+    flex-direction: column;
+    width: 700px;
+    border-radius: 20px;
+    height: 500px;
+    position: relative;
+    form{
+      color: #FFFFFF;
+      width: 500px;
+      margin: 0 auto;
+      #user{
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        div{
+          width: 70%;
+          display: flex;
+          justify-content: space-between;
+          margin: 10px auto;
+          label{
+            display: none;
+          }
+          ul{
+            color: red;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            width: 145px;
+            border: 2px solid red;
+            border-radius: 5px;
+          }
+          input{
+            width: 100%;
+          }
+          input::placeholder{
+            text-align: center;
+            width: 100%;
+          }
+          button{
+            left: 50%;
+          }
+        }
+      }
+    }
+    .formReturn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .return{
+        bottom: 30px;
+        height: 40px;
+        width: 150px;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 20px;
+        border: rgb(0, 0, 0) 2px solid;
+        transition: 0.5s;
+        color: #FFFFFF ;
+        &:hover{
+          transform: scale(1.1);
+          background: pink;
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,18 @@
 {% extends 'base.html.twig' %}
+{% block title %} Enregistrement {% endblock %}
+{% block page %} class="enregistrement" {% endblock %}
 {% block body %}
-    {{ form(userForm) }}
-    <button><a href="{{ path('showUser') }}">Retour a la liste des utilisateurs</a></button>
+    <section>
+        <h2 class="register">S'enregistrer</h2>
+        {{ form(userForm) }}
+        <form action="{{ path('createUser') }}" name="user" methode="poste">
+            <input type="email" name="email" id="email" placeholder="Adresse mail">
+            <input type="password" name="password" id="password" placeholder="Mot de passe">
+            <input type="password" name="password-confirmation" id="password-confirmation" placeholder="Confirmation">
+        </form>
+        <form action="{{ path('home') }}" class="formReturn">
+            <button class="return">Retour a l'acceuil</button>
+        </form>
+        <script defer src="{{ asset('assets/js/register-form.js') }}"></script>
+    </section>
 {% endblock %}

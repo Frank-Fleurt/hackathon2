@@ -1,5 +1,7 @@
-<header>
-    <nav {% if is_granted("ROLE_ADMIN") %}class="admin"{% else %}class="client"{% endif %}>
+<nav {% if is_granted("ROLE_ADMIN") %}class="admin"{% else %}class="client"{% endif %}>
+    <label for="checkbox">
+        <input type="checkbox" id="checkbox">
+        <span class="menu"> <span class="hamburger"></span> </span>
         <ul>
             <li><a href="{{ path('home') }}"><img src="{{ asset('assets/img/logo.jpg') }}" alt="logo" class="logo"></a></li>
             <li><a href="{{ path('home') }}">Accueil</a></li>
@@ -17,5 +19,5 @@
                 <li><a href="{{ path('app_login') }}">Connexion</a></li>
             {% endif %}
         </ul>
-    </nav>
-</header>
+    </label>
+</nav>

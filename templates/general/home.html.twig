@@ -11,27 +11,39 @@
         <div class="homeDoing">
             <div class="administrativ">
                 <div class="img">
-                    <img src="{{ asset('assets/img/administrativ.png') }}" alt="Admin papers"">
+                    <img src="{{ asset('assets/img/administrativ.png') }}" alt="Admin papers by Freepik"">
                 </div>
                 <span>Aide administrative</span>
             </div>
             <div class="cleaning">
                 <div class="img">
-                    <img src="{{ asset('assets/img/cleaning.png') }}" alt="Cleaning cart"">
+                    <img src="{{ asset('assets/img/cleaning.png') }}" alt="Cleaning cart by Smashicons"">
                 </div>
                 <span>Aide au ménage</span>
             </div>
             <div class="meal">
                 <div class="img">
-                    <img src="{{ asset('assets/img/meal.png') }}" alt="Meal plate"">
+                    <img src="{{ asset('assets/img/meal.png') }}" alt="Meal plate bt Freepik"">
                 </div>
                 <span>Préparation des repas</span>
             </div>
             <div class="mooving">
                 <div class="img">
-                    <img src="{{ asset('assets/img/mooving.png') }}" alt="Car"">
+                    <img src="{{ asset('assets/img/mooving.png') }}" alt="Car by Freepik"">
                 </div>
-                <span>Accompagnement aux déplacement</span>
+                <span>Accompagnement pour déplacements</span>
+            </div>
+            <div class="ironing">
+                <div class="img">
+                    <img src="{{ asset('assets/img/iron.png') }}" alt="Iron by Freepik"">
+                </div>
+                <span>Repassage</span>
+            </div>
+            <div class="shopping">
+                <div class="img">
+                    <img src="{{ asset('assets/img/shopping.png') }}" alt="shopping by Freepik"">
+                </div>
+                <span>Accompagnement aux courses</span>
             </div>
         </div>
         <h2 class="homeH2">Mon secteur</h2>
@@ -43,26 +55,28 @@
         <h2 class="homeH2">Me contacter</h2>
         <div class="contactContainer">
             <div class="networks">
-                <h3>Mes reseaux</h3>
+                <h4>Sur mes réseaux :</h4>
                 <div class="facebook">
-                    <span class="facebookLink">Facebook</span>
-                    <img src="{{ asset('assets/img/facebook.png') }}" alt="Facebook logo by Hight Quality Icons">
+                    <a href="https://www.facebook.com/gayonemilie/" target="_blank">
+                        <img src="{{ asset('assets/img/facebook.png') }}" alt="Facebook logo by Hight Quality Icons">
+                        <span>Les services d'Émilie</span>
+                    </a>
                 </div>
                 <div class="instagram">
-                    <span class="instagramLink">Instagram</span>
-                    <img src="{{ asset('assets/img/instagram.png') }}" alt="Facebook logo by Hight Quality Icons">
+                    <a href="https://www.instagram.com/lesservicesdemilie/" target="_blank">
+                        <img src="{{ asset('assets/img/instagram.png') }}" alt="Facebook logo by Hight Quality Icons">
+                        <span>@lesservicesdemilie</span>
+                    </a>
                 </div>
             </div>
             <div class="contact">
-            <div class="mail">
-                <span class="mailAdress">Mail</span>
-                <img src="{{ asset('assets/img/email.png') }}" alt="Facebook logo by rukanicon">
+                <div class="mail">
+                    <h4 class="mailAdress">Par eMail : </h4>
+                </div>
+                <div class="phone">
+                    <h4 class="phoneNumber">Sur mon téléphone :</h4>
+                </div>
             </div>
-            <div class="phone">
-                <span class="phoneNumber">Téléphone</span>
-                <img src="{{ asset('assets/img/telephone.png') }}" alt="Facebook logo by Freepik">
-            </div>
-        </div>
         </div>
     </section>
 {% endblock %}

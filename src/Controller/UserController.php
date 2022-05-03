@@ -6,12 +6,14 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/user')]
+
 class UserController extends AbstractController
 {
 
@@ -23,7 +25,30 @@ class UserController extends AbstractController
     $user = new User();
 
     $form = $this->createForm(UserType::class, $user);
-    $form->handleRequest($request);
+	$form->add('password', RepeatedType::class, [
+	  'type' => PasswordType::class,
+	  'invalid_message' => 'Mot de passe non correspondant',
+	  'invalid_message_parameters' =>  [
+		  "string" , 'invalid_message'
+	  ],
+	    'options' => [
+		  'attr' => [
+			  'class' => 'password-field',
+		  ]
+	     ],
+		'first_options' => [
+	        'attr' => [
+		        'placeholder' => 'Mot de passe'
+	        ]
+        ],
+		'second_options' => [
+	        'attr' => [
+		        'placeholder' => 'Confirmation mot de passe'
+	        ]
+        ],
+	  'required' => true,
+	]);
+	$form->handleRequest($request);
 
       if($form->isSubmitted() && $form->isValid()){
         //recupération du mot de pass
@@ -34,24 +59,23 @@ class UserController extends AbstractController
           $plaintextPassword
         );
         //remplacement du mot de passe par le mot de passe hacher
-        $user->setPassword($hashedPassword)
-          //ajout du role dans l'entité
-          ->setRoles(['ROLE_X']);
+        $user->setPassword($hashedPassword);
+		//ajout du role dans l'entité
         //envoie de toutes les infos de l'entité dans la base
         $userRepository->add($user);
         return $this->redirectToRoute('showUser');
       }
-      return $this->render('/user/createUSer.html.twig',['userForm'=>$form->createView()]);
+      return $this->render('/user/createUser.html.twig',['userForm'=>$form->createView()]);
   }
 
-  #[Route('/', name:'showUser')]
+  #[Route('/user', name:'showUser')]
   public function showUser(UserRepository $userRepository)
   {
     $users = $userRepository->findBy([],['email'=>'ASC']);
     return $this->render('/user/users.html.twig', ['users'=>$users]);
   }
 
-  #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
+  #[Route('/user/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
   public function edit(Request $request, User $user, UserRepository $userRepository): Response
   {
     $form = $this->createForm(UserType::class, $user);
@@ -67,7 +91,7 @@ class UserController extends AbstractController
       'userForm' => $form,
     ]);
   }
-  #[Route('/{id}', name: 'app_user_delete', methods: ['POST','GET'])]
+  #[Route('/user/{id}', name: 'app_user_delete', methods: ['POST','GET'])]
   public function delete(Request $request,
                          User $user,
                          UserRepository $userRepository): Response

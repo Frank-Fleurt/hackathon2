@@ -2,6 +2,35 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
+//****************   Mixins   ****************
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//****************   Keyframes   ****************
+
+@keyframes appearFromTop {
+  from{
+    opacity: 0;
+    transform: translateY(-75px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+@keyframes appearOpacity {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
 //****************   General settings   ****************
 
 *{
@@ -28,23 +57,3 @@ img{
   display: block;
 }
 
-//****************   Mixins   ****************
-
-@mixin center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-//****************   Keyframes   ****************
-
-@keyframes appear {
-  from{
-    opacity: 0;
-    transform: translateY(-75px);
-  }
-  to{
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}

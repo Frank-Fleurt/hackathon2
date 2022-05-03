@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% block title %} Liste des clients {% endblock %}
 {% block body %}
     <section class="clientList">
         <h1 class="titleH1">Liste des clients</h1>
@@ -18,12 +19,12 @@
                     <span>Adresse: {{ client.adress }}</span>
                     <span>Téléphone: {{ client.tel }}</span>
                     <div class="options">
-                        <button><a href="{{ path('editClient',{'id' : client.id}) }}"><div class="edit">Éditer</div></a></button>
+                        <button><a href="{{ path('editClient',{'id' : client.id}) }}"><div class="edit">Modifier</div></a></button>
                         <button><a href="{{ path('disableClient',{'id' : client.id}) }}"><div class="edit">Supprimer</div></a></button>
                     </div>
                 </div>
             {% endfor %}
-        <button class="addClient"><a href="{{ path('addClient') }}">Ajouté un client</a></button>
+        <button class="addClient"><a href="{{ path('addClient') }}">Ajouter un client</a></button>
         </div>
     </section>
 {% endblock %}

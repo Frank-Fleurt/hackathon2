@@ -26,18 +26,19 @@ class ClientsType extends AbstractType
                 new Length([
                   'min' => 2,
                   'max' => 60,
-                  'minMessage' => 'Rentrez un ayant entre 2 et 60 caractères',
-                  'maxMessage' => 'Rentrez un ayant entre 2 et 60 caractères'
+                  'minMessage' => 'Rentrez une valeur ayant entre 2 et 60 caractères',
+                  'maxMessage' => 'Rentrez une valeur ayant entre 2 et 60 caractères'
                 ])
               ]
             ])
             ->add('age', DateType::class, [
               'label' => 'Date de naissance',
               'widget' => 'single_text'
+
             ])
             ->add('mail', EmailType::class, [
               'label' => 'Email',
-              'required' => false
+              'required' => false,
             ])
             ->add('adress',TextType::class, [
               'label' => 'Adresse postal'
