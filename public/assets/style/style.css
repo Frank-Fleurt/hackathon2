@@ -28,6 +28,11 @@
 body {
   padding-top: 70px;
 }
+@media screen and (max-width: 850px) {
+  body {
+    padding-top: 0;
+  }
+}
 
 body.home {
   padding-top: 0px;
@@ -46,14 +51,29 @@ img {
   display: block;
 }
 
+.logoNav {
+  display: none;
+}
+@media screen and (max-width: 850px) {
+  .logoNav {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    border-radius: 150px;
+    width: 60px;
+    height: 60px;
+    z-index: 20000;
+  }
+}
+
 nav {
   position: fixed;
   width: 100%;
   top: 0px;
   z-index: 500;
-  overflow-x: hidden;
+  overflow: hidden;
   height: 70px;
-  overflow-y: hidden;
 }
 nav.admin {
   background: #000;
@@ -62,6 +82,46 @@ nav.admin {
 nav.client {
   color: white;
   background: linear-gradient(180deg, #0000008c, transparent);
+}
+@media screen and (max-width: 850px) {
+  nav {
+    height: 0px;
+    overflow: unset;
+  }
+  nav.admin {
+    background: rgba(0, 0, 0, 0);
+  }
+  nav.client {
+    color: unset;
+  }
+}
+nav label ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+nav label ul a {
+  font-family: "Segoe UI", sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: 0.5s;
+  letter-spacing: 2px;
+}
+nav label ul a:hover {
+  color: #ee4eff;
+  transform: scale(1.1);
+}
+nav label ul a .logoImg {
+  border-radius: 150px;
+  width: 60px;
+  height: 60px;
+  margin-top: 5px;
+}
+@media screen and (max-width: 850px) {
+  nav label ul a .logoImg {
+    width: 40px;
+    height: 40px;
+  }
 }
 nav label input {
   display: none;
@@ -121,46 +181,33 @@ nav label input {
     transform: rotate(90deg);
     top: 0;
   }
+  nav label input:checked + .menu .hamburger {
+    transform: rotate(-45deg);
+  }
   nav label input:checked + .menu + ul {
-    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    padding-top: 35px;
+    width: 100vh;
+  }
+  nav label input:checked + .menu + ul li {
+    padding-top: 70px;
+    color: #ee4eff;
   }
   nav label ul {
     z-index: 200;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    -webkit-transition: 0.25s 0s ease-in-out;
-    transition: 0.25s 0s ease-in-out;
+    transform: translate(-50%);
+    display: none;
   }
-}
-nav ul {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-nav ul a {
-  font-family: "Segoe UI", sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
-  transition: 0.5s;
-  letter-spacing: 2px;
-}
-nav ul a:hover {
-  color: #ee4eff;
-  transform: scale(1.1);
-}
-nav ul a .logo {
-  border-radius: 150px;
-  width: 60px;
-  height: 60px;
-  margin-top: 5px;
-}
-@media screen and (max-width: 850px) {
-  nav ul a .logo {
-    width: 40px;
-    height: 40px;
+  nav label ul li {
+    transition: 1s 0s ease-in-out;
+  }
+  nav label ul .logo {
+    display: none;
   }
 }
 
@@ -173,18 +220,26 @@ nav ul a .logo {
 .clientList .titleH1 {
   color: white;
   text-align: center;
+  padding-bottom: 30px;
 }
 .clientList .clientContainer {
   width: 80%;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  gap: 50px;
   justify-content: space-evenly;
   background: rgba(0, 0, 0, 0.47);
+  border-radius: 25px;
+}
+@media screen and (max-width: 850px) {
+  .clientList .clientContainer {
+    gap: 30px;
+  }
 }
 .clientList .clientContainer .clientCard {
   background: rgba(108, 108, 108, 0.68);
-  width: 40%;
+  width: 250px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -280,16 +335,35 @@ nav ul a .logo {
 }
 
 .calendar {
-  padding-top: 75px;
+  padding-top: 95px;
   background: url("../img/backgroundClient.jpg") center/cover;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  height: 100vh;
 }
 .calendar #calendrier {
   background: white;
   width: 80%;
   margin: 0 auto;
+  border-radius: 5px;
+  height: 80%;
+}
+@media screen and (max-width: 850px) {
+  .calendar #calendrier {
+    height: 100%;
+  }
+  .calendar #calendrier .fc-toolbar-title {
+    font-size: 1.5rem;
+  }
+  .calendar #calendrier .fc .fc-button .fc-icon {
+    font-size: unset;
+  }
+  .calendar #calendrier.fc .fc-scroller::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+  }
 }
 .calendar .links {
   background: rgba(0, 0, 0, 0.5);
@@ -299,6 +373,14 @@ nav ul a .logo {
   border: black 2px solid;
   border-radius: 5px;
   transition: 0.5s;
+}
+.calendar .links button {
+  width: 100%;
+  height: 100%;
+  background: rgba(224, 224, 224, 0);
+  border: rgba(224, 224, 224, 0);
+  color: #FFFFFF;
+  cursor: pointer;
 }
 .calendar .links:hover {
   transform: scale(1.1);
@@ -440,6 +522,12 @@ nav ul a .logo {
   height: 100vh;
   width: 80%;
 }
+@media screen and (max-width: 850px) {
+  #activities #map {
+    height: 70vh;
+    width: 90%;
+  }
+}
 
 #contact {
   padding: 0 5px;
@@ -515,25 +603,21 @@ nav ul a .logo {
   height: 500px;
   position: relative;
 }
+.enregistrement section h2 {
+  color: #FFFFFF;
+  position: absolute;
+  top: 60px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
 .enregistrement section form {
   color: #FFFFFF;
   width: 500px;
   margin: 0 auto;
-}
-.enregistrement section form #user {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
 }
-.enregistrement section form #user div {
-  width: 70%;
-  display: flex;
-  justify-content: space-between;
-  margin: 10px auto;
-}
-.enregistrement section form #user div label {
-  display: none;
-}
-.enregistrement section form #user div ul {
+.enregistrement section form ul {
   color: red;
   position: absolute;
   top: 50%;
@@ -543,15 +627,36 @@ nav ul a .logo {
   border: 2px solid red;
   border-radius: 5px;
 }
-.enregistrement section form #user div input {
+.enregistrement section form label {
+  display: none;
+}
+.enregistrement section form input {
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  margin: 5px 0;
+  padding: 0 25px;
+}
+.enregistrement section form input::placeholder {
   width: 100%;
 }
-.enregistrement section form #user div input::placeholder {
-  text-align: center;
-  width: 100%;
+.enregistrement section form div {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0 0 0;
 }
-.enregistrement section form #user div button {
-  left: 50%;
+.enregistrement section form div button {
+  height: 40px;
+  width: 150px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  border: black 2px solid;
+  transition: 0.5s;
+  color: #FFFFFF;
+}
+.enregistrement section form div button:hover {
+  transform: scale(1.1);
+  background: pink;
 }
 .enregistrement section .formReturn {
   display: flex;
@@ -560,6 +665,7 @@ nav ul a .logo {
 }
 .enregistrement section .formReturn .return {
   bottom: 30px;
+  left: 10%;
   height: 40px;
   width: 150px;
   position: absolute;
@@ -572,6 +678,143 @@ nav ul a .logo {
 .enregistrement section .formReturn .return:hover {
   transform: scale(1.1);
   background: pink;
+}
+.enregistrement section .formLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.enregistrement section .formLogin .return {
+  bottom: 30px;
+  left: 65%;
+  height: 40px;
+  width: 150px;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  border: black 2px solid;
+  transition: 0.5s;
+  color: #FFFFFF;
+}
+.enregistrement section .formLogin .return:hover {
+  transform: scale(1.1);
+  background: pink;
+}
+.enregistrement .error {
+  color: red;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.login {
+  background: url("../img/homeHeaderBg.jpg") center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login section {
+  background: rgba(0, 0, 0, 0.48);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 700px;
+  border-radius: 20px;
+  height: 500px;
+  position: relative;
+}
+.login section h2 {
+  color: #FFFFFF;
+  position: absolute;
+  top: 60px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.login section form {
+  color: #FFFFFF;
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.login section form label {
+  display: none;
+}
+.login section form input {
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  margin: 5px 0;
+  padding: 0 25px;
+}
+.login section form input::placeholder {
+  width: 100%;
+}
+.login section form button {
+  height: 40px;
+  width: 150px;
+  margin: 10px auto 0;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  border: black 2px solid;
+  transition: 0.5s;
+  color: #FFFFFF;
+}
+.login section form button:hover {
+  transform: scale(1.1);
+  background: pink;
+}
+.login section .formReturn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login section .formReturn .return {
+  bottom: 30px;
+  left: 10%;
+  height: 40px;
+  width: 150px;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  border: black 2px solid;
+  transition: 0.5s;
+  color: #FFFFFF;
+}
+.login section .formReturn .return:hover {
+  transform: scale(1.1);
+  background: pink;
+}
+.login section .formRegister {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login section .formRegister .return {
+  bottom: 30px;
+  left: 65%;
+  height: 40px;
+  width: 150px;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  border: black 2px solid;
+  transition: 0.5s;
+  color: #FFFFFF;
+}
+.login section .formRegister .return:hover {
+  transform: scale(1.1);
+  background: pink;
+}
+.login .error {
+  color: red;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /*# sourceMappingURL=style.css.map */

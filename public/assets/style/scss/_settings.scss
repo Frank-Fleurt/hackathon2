@@ -42,6 +42,9 @@
 }
 body{
   padding-top: 70px;
+  @media screen and (max-width: 850px) {
+    padding-top: 0;
+  }
 }
 body.home{
   padding-top: 0px;

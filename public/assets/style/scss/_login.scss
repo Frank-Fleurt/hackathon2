@@ -1,4 +1,4 @@
-.enregistrement{
+.login{
 	background: url('../img/homeHeaderBg.jpg') center/cover;
 	height: 100vh;
 	@include center;
@@ -21,18 +21,8 @@
 			color: #FFFFFF;
 			width: 500px;
 			margin: 0 auto;
-			display: grid;
-			grid-template-rows: 1fr 1fr 1fr;
-			ul{
-				color: red;
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-				right: 10px;
-				width: 145px;
-				border: 2px solid red;
-				border-radius: 5px;
-			}
+			display: flex;
+			flex-direction: column;
 			label{
 				display: none;
 			}
@@ -46,22 +36,18 @@
 					width: 100%;
 				}
 			}
-			div{
-				display: flex;
-				justify-content: center;
-				margin: 25px 0 0 0;
-				button{
-					height: 40px;
-					width: 150px;
-					background: rgba(0, 0, 0, 0.6);
-					border-radius: 20px;
-					border: rgb(0, 0, 0) 2px solid;
-					transition: 0.5s;
-					color: #FFFFFF ;
-					&:hover{
-						transform: scale(1.1);
-						background: pink;
-					}
+			button{
+				height: 40px;
+				width: 150px;
+				margin: 10px auto 0;
+				background: rgba(0, 0, 0, 0.6);
+				border-radius: 20px;
+				border: rgb(0, 0, 0) 2px solid;
+				transition: 0.5s;
+				color: #FFFFFF ;
+				&:hover{
+					transform: scale(1.1);
+					background: pink;
 				}
 			}
 		}
@@ -86,7 +72,7 @@
 				}
 			}
 		}
-		.formLogin{
+		.formRegister{
 			display: flex;
 			align-items: center;
 			justify-content: center;

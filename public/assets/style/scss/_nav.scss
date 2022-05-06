@@ -1,11 +1,24 @@
+.logoNav{
+  display: none;
+  @media screen and (max-width: 850px) {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    border-radius: 150px;
+    width: 60px;
+    height: 60px;
+    z-index: 20000;
+  }
+}
 nav{
   position: fixed;
   width: 100%;
   top: 0px;
   z-index: 500;
-  overflow-x: hidden;
+  overflow: hidden;
   height: 70px;
-  overflow-y: hidden ;
+
   &.admin{
   background: #000;
   color: #cecece;
@@ -14,7 +27,42 @@ nav{
     color: white;
     background: linear-gradient(180deg, #0000008c, transparent);
   }
-
+  @media screen and (max-width: 850px) {
+    height: 0px;
+    overflow: unset;
+    &.admin{
+      background: rgba(0, 0, 0, 0);
+    }
+    &.client {
+      color: unset;
+    }
+  }
+  label ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    a{
+      font-family: "Segoe UI", sans-serif;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: 0.5s;
+      letter-spacing: 2px;
+      &:hover{
+        color: #ee4eff;
+        transform: scale(1.1);
+      }
+      .logoImg{
+        border-radius: 150px;
+        width: 60px;
+        height: 60px;
+        margin-top: 5px;
+        @media screen and (max-width: 850px) {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
   label input { display: none; }
   @media screen and (max-width: 850px) {
       label .menu {
@@ -68,42 +116,33 @@ nav{
       transform: rotate(90deg);
       top: 0;
     }
-    label input:checked + .menu + ul { opacity: 1; }
-    label ul {
-      z-index: 200;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      -webkit-transition: .25s 0s ease-in-out;
-      transition: .25s 0s ease-in-out;
+    label input:checked + .menu .hamburger {
+      transform: rotate(-45deg);
     }
-  }
-  ul{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    a{
-      font-family: "Segoe UI", sans-serif;
-      text-transform: uppercase;
-      font-weight: 700;
-      transition: 0.5s;
-      letter-spacing: 2px;
-      &:hover{
+    label input:checked + .menu + ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: 50%;
+      padding-top: 35px;
+      width: 100vh;
+      li{
+        padding-top: 70px;
         color: #ee4eff;
-        transform: scale(1.1);
       }
-      .logo{
-        border-radius: 150px;
-        width: 60px;
-        height: 60px;
-        margin-top: 5px;
-        @media screen and (max-width: 850px) {
-        width: 40px;
-        height: 40px;
-        }
-      }
+    }
+    label ul {
+    z-index: 200;
+    transform: translate(-50%);
+    display: none;
+    li{
+        transition: 1s 0s ease-in-out;
+    }
+    .logo{
+        display: none;
+    }
     }
   }
 }

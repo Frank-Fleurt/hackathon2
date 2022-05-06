@@ -20,36 +20,33 @@ class UserController extends AbstractController
   #[Route('/register', name:'createUser', methods:['GET','POST'])]
   public function createUser(Request $request,
                              UserRepository $userRepository,
-                             UserPasswordHasherInterface $passwordHasher)
+                             UserPasswordHasherInterface $passwordHasher,)
   {
     $user = new User();
 
     $form = $this->createForm(UserType::class, $user);
 	$form->add('password', RepeatedType::class, [
-	  'type' => PasswordType::class,
-	  'invalid_message' => 'Mot de passe non correspondant',
-	  'invalid_message_parameters' =>  [
-		  "string" , 'invalid_message'
-	  ],
-	    'options' => [
-		  'attr' => [
-			  'class' => 'password-field',
+		'type' => PasswordType::class,
+		'invalid_message' => 'Mot de passe non correspondant',
+        'options' => [
+		'attr' => [
+				  'class' => 'password-field',
 		  ]
-	     ],
+        ],
 		'first_options' => [
-	        'attr' => [
-		        'placeholder' => 'Mot de passe'
-	        ]
+           'attr' => [
+	           'placeholder' => 'Mot de passe'
+           ]
         ],
 		'second_options' => [
-	        'attr' => [
-		        'placeholder' => 'Confirmation mot de passe'
-	        ]
+           'attr' => [
+	           'placeholder' => 'Confirmation mot de passe'
+           ]
         ],
 	  'required' => true,
 	]);
 	$form->handleRequest($request);
-
+	$error = '';
       if($form->isSubmitted() && $form->isValid()){
         //recupération du mot de pass
         $plaintextPassword = $user->getPassword();
@@ -62,10 +59,14 @@ class UserController extends AbstractController
         $user->setPassword($hashedPassword);
 		//ajout du role dans l'entité
         //envoie de toutes les infos de l'entité dans la base
-        $userRepository->add($user);
-        return $this->redirectToRoute('showUser');
+	      try {
+			  $userRepository->add($user);
+		      return $this->redirectToRoute('home');
+	      }catch (\Exception $exception) {
+			  $error = $exception->getMessage();
+	      }
       }
-      return $this->render('/user/createUser.html.twig',['userForm'=>$form->createView()]);
+      return $this->render('/user/createUser.html.twig',['userForm'=>$form->createView(), 'error' => $error]);
   }
 
   #[Route('/user', name:'showUser')]

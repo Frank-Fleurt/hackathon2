@@ -1,18 +1,31 @@
 {% extends 'base.html.twig' %}
 {% block title %} Enregistrement {% endblock %}
 {% block page %} class="enregistrement" {% endblock %}
+{% block class %} class="home" {% endblock %}
+
 {% block body %}
     <section>
+
         <h2 class="register">S'enregistrer</h2>
-        {{ form(userForm) }}
-        <form action="{{ path('createUser') }}" name="user" methode="poste">
-            <input type="email" name="email" id="email" placeholder="Adresse mail">
-            <input type="password" name="password" id="password" placeholder="Mot de passe">
-            <input type="password" name="password-confirmation" id="password-confirmation" placeholder="Confirmation">
-        </form>
+        {{ form_start(userForm) }}
+            {{ form_widget(userForm.email) }}
+            {{ form_label(userForm.password.first) }}
+            {{ form_widget(userForm.password.first) }}
+            {{ form_label(userForm.password.second) }}
+            {{ form_widget(userForm.password.second) }}
+        {{ form_end(userForm) }}
+        {% if error != '' %}
+            <div class="alert alert-danger error">Email invalid ou deja utilise</div>*
+        {% endif %}
+        {% if form_errors(userForm.password.first) %}
+            <div class="alert alert-danger error">Mot de passe non correspondant</div>
+        {% endif %}
         <form action="{{ path('home') }}" class="formReturn">
             <button class="return">Retour a l'acceuil</button>
         </form>
-        <script defer src="{{ asset('assets/js/register-form.js') }}"></script>
+        <form action="{{ path('app_login') }}" class="formLogin">
+            <button class="return">Déjà membre ?</button>
+        </form>
     </section>
+
 {% endblock %}

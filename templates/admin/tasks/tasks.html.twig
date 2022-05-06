@@ -16,25 +16,36 @@
         <div class="calendar">
             <div id="calendrier">
             </div>
-            <button class="links">
-                <a href="{{ path('addTask') }}">Ajouté une tâche</a>
-            </button>
+            <form class="links" action="{{ path('addTask') }}">
+                <button>Ajouté une tâche</button>
+            </form>
         </div>
     {% endblock %}
 </main>
 {% include 'commons/_footer.html.twig' %}
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js" integrity="sha256-YicH/8aE660iEnJtgll3vT54dJApy3XkYmqNfGVFEzA=" crossorigin="anonymous"></script>
 <script>window.onload= ()=>{
+	    let days
+        if(innerWidth > 850){
+			days = 5
+        }else{
+			days = 1
+        }
+		let buttonOption
+		if(innerWidth > 850){
+			buttonOption = 'timeGridDay,timeGridFourDay,dayGridMonth'
+        }else{ buttonOption = ''}
+
         let calendarElt = document.querySelector('#calendrier')
         let calendar  = new FullCalendar.Calendar(calendarElt, {
             initialView: 'timeGrid',
-            duration:{days: 5},
+            duration:{days: days},
             locale:'fr',
             timeZone: 'Europe/Paris',
             headerToolbar:{
                 start:'prev,next',
                 center:'title',
-                end:'timeGridDay,timeGridFourDay,dayGridMonth'
+                end : buttonOption
             },
             views: {
                 timeGridFourDay: {
