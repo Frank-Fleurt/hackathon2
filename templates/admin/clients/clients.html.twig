@@ -19,12 +19,14 @@
                     <span>Adresse: {{ client.adress }}</span>
                     <span>Téléphone: {{ client.tel }}</span>
                     <div class="options">
-                        <button><a href="{{ path('editClient',{'id' : client.id}) }}"><div class="edit">Modifier</div></a></button>
-                        <button><a href="{{ path('disableClient',{'id' : client.id}) }}"><div class="edit">Supprimer</div></a></button>
+                        <button class="button"><a href="{{ path('editClient',{'id' : client.id}) }}"><div class="edit">Modifier</div></a></button>
+                        <button class="button"><a href="{{ path('disableClient',{'id' : client.id}) }}"><div class="edit">Supprimer</div></a></button>
                     </div>
                 </div>
             {% endfor %}
-        <button class="addClient"><a href="{{ path('addClient') }}">Ajouter un client</a></button>
+            <form action="{{ path('addClient') }}" class="addClient">
+                <button class="button">Ajouter un client</button>
+            </form>
         </div>
     </section>
 {% endblock %}

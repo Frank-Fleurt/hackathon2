@@ -27,6 +27,7 @@
 
 body {
   padding-top: 70px;
+  overflow-x: hidden;
 }
 @media screen and (max-width: 850px) {
   body {
@@ -36,6 +37,7 @@ body {
 
 body.home {
   padding-top: 0px;
+  overflow-x: hidden;
 }
 
 li {
@@ -51,10 +53,24 @@ img {
   display: block;
 }
 
+.button {
+  height: 40px;
+  width: 150px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  border: black 2px solid;
+  transition: 0.5s;
+  color: #FFFFFF;
+}
+.button:hover {
+  transform: scale(1.1);
+  background: pink;
+}
+
 .logoNav {
   display: none;
 }
-@media screen and (max-width: 850px) {
+@media (max-width: 850px) {
   .logoNav {
     display: block;
     position: fixed;
@@ -83,7 +99,7 @@ nav.client {
   color: white;
   background: linear-gradient(180deg, #0000008c, transparent);
 }
-@media screen and (max-width: 850px) {
+@media (max-width: 850px) {
   nav {
     height: 0px;
     overflow: unset;
@@ -126,7 +142,7 @@ nav label ul a .logoImg {
 nav label input {
   display: none;
 }
-@media screen and (max-width: 850px) {
+@media (max-width: 850px) {
   nav label .menu {
     position: absolute;
     right: -100px;
@@ -216,6 +232,7 @@ nav label input {
   display: flex;
   flex-direction: column;
   padding-top: 75px;
+  min-height: 100vh;
 }
 .clientList .titleH1 {
   color: white;
@@ -263,32 +280,19 @@ nav label input {
   bottom: 10px;
 }
 .clientList .clientContainer .clientCard .options button {
-  border-radius: 5px;
-  padding: 4px;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  transition: 0.5s;
-}
-.clientList .clientContainer .clientCard .options button:hover {
-  transform: scale(1.1);
-  background: pink;
+  width: 70px;
+  height: 25px;
 }
 .clientList .addClient {
-  background: rgba(0, 0, 0, 0.5);
   margin: 10px auto;
   width: 80%;
   height: 70px;
-  border: black 2px solid;
-  border-radius: 5px;
-  transition: 0.5s;
 }
-.clientList .addClient:hover {
-  transform: scale(1.1);
-  background: pink;
-}
-.clientList .addClient a {
+.clientList .addClient .button {
   color: #FFFFFF;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .formClient {
@@ -316,6 +320,7 @@ nav label input {
 .formClient .img img {
   height: 90px;
   border-radius: 20px;
+  margin: auto;
 }
 .formClient form {
   background: rgba(0, 0, 0, 0.47);
@@ -323,14 +328,19 @@ nav label input {
   margin: 0 auto;
   color: white;
   padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .formClient form div {
-  display: grid;
-  grid-auto-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   padding: 5px;
+  width: 70%;
 }
 .formClient form div input {
   border-radius: 5px;
+  height: 35px;
   text-align: center;
 }
 
@@ -534,16 +544,18 @@ nav label input {
   corlor: white;
 }
 #contact .contactContainer .networks {
-  position: relative;
   margin-bottom: 20px;
+  height: 50px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-items: center;
 }
 #contact .contactContainer .networks div {
   width: 40px;
+  height: 40px;
   border-radius: 150px;
   transition: 0.5s;
-  position: absolute;
   top: 0px;
-  transform: translateY(-25%);
   overflow: hidden;
 }
 #contact .contactContainer .networks div:hover {
@@ -554,6 +566,17 @@ nav label input {
   animation: 1s linear 0.5s appearOpacity forwards;
   display: unset;
 }
+@media (max-width: 850px) {
+  #contact .contactContainer .networks div:hover span {
+    opacity: 1;
+    animation: unset;
+  }
+}
+@media (max-width: 850px) {
+  #contact .contactContainer .networks div {
+    width: 240px;
+  }
+}
 #contact .contactContainer .networks div a {
   display: flex;
   align-items: center;
@@ -563,26 +586,80 @@ nav label input {
   height: 40px;
 }
 #contact .contactContainer .networks div a span {
-  font-family: Courgette;
+  font-family: Courgette, sans-serif;
   display: none;
   color: #FFFFFF;
   transition: 0.5s;
   margin-left: 30px;
 }
+@media (max-width: 850px) {
+  #contact .contactContainer .networks div a span {
+    opacity: 1;
+    display: unset;
+  }
+}
 #contact .contactContainer .networks .facebook {
   background: linear-gradient(100deg, #021b71 0%, #389dfe 100%);
-  left: 30%;
 }
 #contact .contactContainer .networks .instagram {
   background: linear-gradient(100deg, #833ab4 0%, #fd1d1d 74%, #fcb045 100%);
-  left: 70%;
+}
+@media (max-width: 850px) {
+  #contact .contactContainer .networks {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100px;
+  }
 }
 #contact .contact {
   display: flex;
   justify-content: flex-start;
+  position: relative;
+  height: 50px;
 }
 #contact .contact div {
-  width: 50%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+}
+#contact .contact div img {
+  width: 40px;
+}
+#contact .contact div span {
+  font-family: Courgette, sans-serif;
+  padding-left: 35px;
+}
+#contact .contact .mail {
+  left: 30%;
+  width: 30%;
+  transform: translateX(-20%);
+}
+@media (max-width: 850px) {
+  #contact .contact .mail {
+    position: unset;
+    transform: unset;
+    width: unset;
+  }
+}
+#contact .contact .phone {
+  left: 75%;
+  width: 25%;
+  transform: translateX(-40%);
+}
+@media (max-width: 850px) {
+  #contact .contact .phone {
+    position: unset;
+    transform: unset;
+    width: unset;
+  }
+}
+@media (max-width: 850px) {
+  #contact .contact {
+    flex-direction: column;
+    align-items: center;
+    height: 100px;
+    gap: 15px;
+  }
 }
 
 .enregistrement {
@@ -645,60 +722,34 @@ nav label input {
   justify-content: center;
   margin: 25px 0 0 0;
 }
-.enregistrement section form div button {
-  height: 40px;
-  width: 150px;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 20px;
-  border: black 2px solid;
-  transition: 0.5s;
-  color: #FFFFFF;
+@media (max-width: 500px) {
+  .enregistrement section form {
+    width: 100%;
+  }
 }
-.enregistrement section form div button:hover {
-  transform: scale(1.1);
-  background: pink;
+.enregistrement section .actions {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
 }
-.enregistrement section .formReturn {
+.enregistrement section .actions .formReturn {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.enregistrement section .formReturn .return {
-  bottom: 30px;
-  left: 10%;
-  height: 40px;
-  width: 150px;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 20px;
-  border: black 2px solid;
-  transition: 0.5s;
-  color: #FFFFFF;
-}
-.enregistrement section .formReturn .return:hover {
-  transform: scale(1.1);
-  background: pink;
-}
-.enregistrement section .formLogin {
+.enregistrement section .actions .formLogin {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.enregistrement section .formLogin .return {
-  bottom: 30px;
-  left: 65%;
-  height: 40px;
-  width: 150px;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 20px;
-  border: black 2px solid;
-  transition: 0.5s;
-  color: #FFFFFF;
-}
-.enregistrement section .formLogin .return:hover {
-  transform: scale(1.1);
-  background: pink;
+@media (max-width: 500px) {
+  .enregistrement section .actions {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 .enregistrement .error {
   color: red;
@@ -767,47 +818,34 @@ nav label input {
   transform: scale(1.1);
   background: pink;
 }
-.login section .formReturn {
+@media (max-width: 500px) {
+  .login section form {
+    width: 100%;
+  }
+}
+.login section .action {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+}
+.login section .action .formReturn {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.login section .formReturn .return {
-  bottom: 30px;
-  left: 10%;
-  height: 40px;
-  width: 150px;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 20px;
-  border: black 2px solid;
-  transition: 0.5s;
-  color: #FFFFFF;
-}
-.login section .formReturn .return:hover {
-  transform: scale(1.1);
-  background: pink;
-}
-.login section .formRegister {
+.login section .action .formRegister {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.login section .formRegister .return {
-  bottom: 30px;
-  left: 65%;
-  height: 40px;
-  width: 150px;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 20px;
-  border: black 2px solid;
-  transition: 0.5s;
-  color: #FFFFFF;
-}
-.login section .formRegister .return:hover {
-  transform: scale(1.1);
-  background: pink;
+@media (max-width: 500px) {
+  .login section .action {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 .login .error {
   color: red;
@@ -815,6 +853,89 @@ nav label input {
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
+}
+
+footer {
+  background: #eeeeee;
+}
+footer .footerContainer .footerTitle {
+  text-align: center;
+  padding-top: 20px;
+}
+footer .footerContainer .footerTitle h3 {
+  font-family: Courgette, sans-serif;
+}
+footer .footerContainer .footerNav {
+  width: 100%;
+  padding: 20px;
+}
+footer .footerContainer .footerNav ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 250px;
+  justify-items: center;
+  position: relative;
+  margin: auto;
+}
+footer .footerContainer .footerNav ul li a {
+  transition: 0.5s;
+}
+footer .footerContainer .footerNav ul li a:hover {
+  color: #ee4eff;
+}
+footer .footerContainer .footerNav ul:before {
+  content: "";
+  position: absolute;
+  height: 50px;
+  width: 2px;
+  background: black;
+}
+footer .footerContainer .footerContact {
+  display: flex;
+  justify-content: center;
+  width: 500px;
+  padding: 10px;
+  margin: auto;
+}
+footer .footerContainer .footerContact div {
+  width: 30px;
+  height: 30px;
+  margin: auto;
+}
+footer .footerContainer .footerContact div img {
+  width: 30px;
+  height: 30px;
+  border-radius: 180px;
+}
+footer .footerContainer .footerContact .phone {
+  width: 150px;
+  display: flex;
+  align-items: center;
+}
+footer .footerContainer .footerContact .phone span {
+  font-size: 0.75rem;
+  font-family: Courgette, sans-serif;
+}
+footer .footerContainer .footerContact .mail {
+  width: 150px;
+  display: flex;
+  align-items: center;
+}
+footer .footerContainer .footerContact .mail span {
+  font-size: 0.75rem;
+  font-family: Courgette, sans-serif;
+}
+@media (max-width: 850px) {
+  footer .footerContainer .footerContact {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+}
+footer .footerContainer .copyright {
+  font-size: 0.75rem;
 }
 
 /*# sourceMappingURL=style.css.map */

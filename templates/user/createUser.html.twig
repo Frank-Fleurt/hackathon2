@@ -20,12 +20,14 @@
         {% if form_errors(userForm.password.first) %}
             <div class="alert alert-danger error">Mot de passe non correspondant</div>
         {% endif %}
-        <form action="{{ path('home') }}" class="formReturn">
-            <button class="return">Retour a l'acceuil</button>
-        </form>
-        <form action="{{ path('app_login') }}" class="formLogin">
-            <button class="return">Déjà membre ?</button>
-        </form>
+        <div class="actions">
+            <form action="{{ path('home') }}" class="formReturn">
+                <button class="return button">Retour a l'acceuil</button>
+            </form>
+            <form action="{{ path('app_login') }}" class="formLogin">
+                <button class="return button">Déjà membre ?</button>
+            </form>
+        </div>
     </section>
 
 {% endblock %}

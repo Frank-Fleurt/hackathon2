@@ -3,9 +3,16 @@
 {% block body %}
     <section>
         <div class="formClient">
-
             <h1>Ajouté un client</h1>
-            {{ form(clientForm) }}
+            {{ form_start(clientForm) }}
+            {{ form_row(clientForm.Name) }}
+            {{ form_row(clientForm.age) }}
+            {{ form_row(clientForm.mail) }}
+            {{ form_row(clientForm.adress) }}
+            {{ form_row(clientForm.tel) }}
+            {{ form_row(clientForm.img) }}
+            {{ form_widget(clientForm.Envoyer) }}
+            {{ form_end(clientForm) }}
         </div>
     </section>
 {% endblock %}

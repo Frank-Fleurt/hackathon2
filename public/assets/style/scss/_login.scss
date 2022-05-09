@@ -50,47 +50,30 @@
 					background: pink;
 				}
 			}
-		}
-		.formReturn{
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			.return{
-				bottom: 30px;
-				left: 10%;
-				height: 40px;
-				width: 150px;
-				position: absolute;
-				background: rgba(0, 0, 0, 0.6);
-				border-radius: 20px;
-				border: rgb(0, 0, 0) 2px solid;
-				transition: 0.5s;
-				color: #FFFFFF ;
-				&:hover{
-					transform: scale(1.1);
-					background: pink;
-				}
+			@media (max-width: 500px) {
+				width: 100%;
 			}
 		}
-		.formRegister{
+		.action{
 			display: flex;
-			align-items: center;
-			justify-content: center;
-			.return{
-				bottom: 30px;
-				left: 65%;
-				height: 40px;
-				width: 150px;
-				position: absolute;
-				background: rgba(0, 0, 0, 0.6);
-				border-radius: 20px;
-				border: rgb(0, 0, 0) 2px solid;
-				transition: 0.5s;
-				color: #FFFFFF ;
-				&:hover{
-					transform: scale(1.1);
-					background: pink;
-				}
+			justify-content: space-around;
+			position: absolute;
+			bottom: 30px;
+			width: 100%;
+			.formReturn{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.formRegister{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			@media (max-width: 500px) {
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
 			}
 		}
 	}

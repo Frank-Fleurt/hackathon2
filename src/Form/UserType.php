@@ -25,7 +25,7 @@ class UserType extends AbstractType
 
             ])
             ->add('Envoyer', SubmitType::class, [
-	            'attr' => ['class' => 'password-field']
+	            'attr' => ['class' => 'password-field button']
             ])
         ;
     }

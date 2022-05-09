@@ -45,9 +45,11 @@ body{
   @media screen and (max-width: 850px) {
     padding-top: 0;
   }
+  overflow-x: hidden;
 }
 body.home{
   padding-top: 0px;
+  overflow-x: hidden;
 }
 li{
   list-style: none;
@@ -59,4 +61,16 @@ a{
 img{
   display: block;
 }
-
+.button{
+  height: 40px;
+  width: 150px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  border: rgb(0, 0, 0) 2px solid;
+  transition: 0.5s;
+  color: #FFFFFF ;
+  &:hover{
+    transform: scale(1.1);
+    background: pink;
+  }
+}

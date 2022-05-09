@@ -52,7 +52,11 @@ class ClientsType extends AbstractType
               'mapped' => false,
               'label' => 'Image du client'
             ])
-            ->add('Envoyer', SubmitType::class)
+            ->add('Envoyer', SubmitType::class, [
+				'attr' => [
+					'class'=> 'button'
+				]
+            ])
         ;
     }
 

@@ -1,18 +1,19 @@
 #contact{
   padding: 0 5px;
-
   corlor: white;
   .contactContainer{
     .networks{
-      position: relative;
       margin-bottom: 20px;
+      height: 50px;
+      display: grid;
+      grid-template-columns: 50% 50%;
+      justify-items: center;
       div{
         width: 40px;
+        height: 40px;
         border-radius: 150px;
         transition: 0.5s;
-        position: absolute;
         top: 0px;
-        transform: translateY(-25%);
         overflow: hidden;
         &:hover{
           width: 240px;
@@ -21,6 +22,13 @@
           opacity: 0;
           animation: 1s linear 0.5s appearOpacity forwards;
           display: unset;
+          @media (max-width: 850px) {
+            opacity: 1;
+            animation: unset ;
+          }
+        }
+        @media (max-width: 850px) {
+          width: 240px;
         }
         a{
           display: flex;
@@ -30,29 +38,74 @@
             height: 40px;
           }
           span{
-            font-family: Courgette ;
+            font-family: Courgette, sans-serif;
             display: none;
             color: #FFFFFF;
             transition: 0.5s;
             margin-left: 30px;
+            @media (max-width: 850px) {
+              opacity: 1;
+              display: unset;
+            }
           }
         }
       }
       .facebook{
         background: linear-gradient(100deg, rgba(2,27,113,1) 0%, rgba(56,157,254,1) 100%);
-        left: 30%;
-      }
+        }
       .instagram{
         background: linear-gradient(100deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 74%, rgba(252,176,69,1) 100%);
-        left: 70%;
+      }
+      @media (max-width: 850px){
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 100px;
       }
     }
   }
   .contact{
     display: flex;
     justify-content: flex-start;
+    position: relative;
+    height: 50px;
     div{
-      width: 50%;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      img{
+        width: 40px;
+      }
+      span{
+        font-family: Courgette,sans-serif;
+        padding-left: 35px;
+      }
+    }
+    .mail{
+      left: 30%;
+      width: 30%;
+      transform: translateX(-20%);
+      @media (max-width: 850px) {
+        position: unset;
+        transform: unset;
+        width: unset;
+      }
+    
+    }
+    .phone{
+      left: 75%;
+      width: 25%;
+      transform: translateX(-40%);
+      @media (max-width: 850px) {
+        position: unset;
+        transform: unset;
+        width: unset;
+      }
+    }
+    @media (max-width: 850px) {
+      flex-direction: column;
+      align-items: center;
+      height: 100px;
+      gap: 15px;
     }
   }
 }

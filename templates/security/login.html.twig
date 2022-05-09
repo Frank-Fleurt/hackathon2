@@ -18,15 +18,17 @@
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"
             >
-            <button class="btn btn-lg btn-primary" type="submit">
+            <button class="btn btn-lg btn-primary button" type="submit">
                 Se connecter
             </button>
         </form>
-        <form action="{{ path('home') }}" class="formReturn">
-            <button class="return">Retour a l'acceuil</button>
-        </form>
-        <form action="{{ path('createUser') }}" class="formRegister">
-            <button class="return">Pas de compte ?</button>
-        </form>
+        <div class="action">
+            <form action="{{ path('home') }}" class="formReturn">
+                <button class="return button">Retour a l'acceuil</button>
+            </form>
+            <form action="{{ path('createUser') }}" class="formRegister">
+                <button class="return button">Pas de compte ?</button>
+            </form>
+        </div>
     </section>
 {% endblock %}
