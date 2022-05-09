@@ -724,7 +724,7 @@ nav label input {
 }
 @media (max-width: 500px) {
   .enregistrement section form {
-    width: 100%;
+    width: 90%;
   }
 }
 .enregistrement section .actions {
@@ -820,7 +820,7 @@ nav label input {
 }
 @media (max-width: 500px) {
   .login section form {
-    width: 100%;
+    width: 90%;
   }
 }
 .login section .action {

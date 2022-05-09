@@ -1,6 +1,6 @@
 .logoNav{
   display: none;
-  @media screen and (max-width: 850px) {
+  @media (max-width: 850px) {
     display: block;
     position: fixed;
     top: 15px;
@@ -27,7 +27,7 @@ nav{
     color: white;
     background: linear-gradient(180deg, #0000008c, transparent);
   }
-  @media screen and (max-width: 850px) {
+  @media (max-width: 850px) {
     height: 0px;
     overflow: unset;
     &.admin{
@@ -64,7 +64,7 @@ nav{
     }
   }
   label input { display: none; }
-  @media screen and (max-width: 850px) {
+  @media (max-width: 850px) {
       label .menu {
       position: absolute;
       right: -100px;
