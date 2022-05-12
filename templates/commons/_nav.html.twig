@@ -9,6 +9,7 @@
 
             {% if is_granted("ROLE_ADMIN") %}
                 <li><a href="{{ path('showClient') }}">Clients</a></li>
+                <li><a href="{{ path('clientsArchived') }}">Clients archivés</a></li>
                 <li><a href="{{ path('showTask') }}">Emploi du temps</a></li>
             {% else %}
                 <li><a href="#activities">Mes activités</a></li>

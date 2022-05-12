@@ -5,7 +5,7 @@
         <h1 class="titleH1">Liste des clients</h1>
         <div class="clientContainer">
             {% for client in clients %}
-                <div class="clientCard">
+                <div class="clientCard" id="clientCard{{ client.id }}">
                     <div class="img">
                     {% if client.img is not null %}
                         <img src="{{ asset('upload_directory/' ~ client.img.name) }}" alt="client Img">
@@ -20,13 +20,24 @@
                     <span>Téléphone: {{ client.tel }}</span>
                     <div class="options">
                         <button class="button"><a href="{{ path('editClient',{'id' : client.id}) }}"><div class="edit">Modifier</div></a></button>
-                        <button class="button"><a href="{{ path('disableClient',{'id' : client.id}) }}"><div class="edit">Supprimer</div></a></button>
+                        <button class="button actionsButton" data-id="{{ client.id }}" data-name="{{ client.name }}">Supprimer</button>
                     </div>
                 </div>
             {% endfor %}
             <form action="{{ path('addClient') }}" class="addClient">
                 <button class="button">Ajouter un client</button>
             </form>
+            <div id="clientPopupContainer" class="clientPopup">
+                <div class="clientPopup">
+                    <span id="clientMessage"></span>
+                    <div class="actions">
+                        <button class="button" id="definitiveDelete">Supprimer définitivement</button>
+                        <button class="button" id="archive">Archiver</button>
+                        <button class="button" id="closePopup">Retour</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+    <script src="{{ asset('assets/js/client.js') }}" defer></script>
 {% endblock %}

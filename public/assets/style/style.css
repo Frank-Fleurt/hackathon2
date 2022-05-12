@@ -61,6 +61,7 @@ img {
   border: black 2px solid;
   transition: 0.5s;
   color: #FFFFFF;
+  cursor: pointer;
 }
 .button:hover {
   transform: scale(1.1);
@@ -295,6 +296,36 @@ nav label input {
   cursor: pointer;
 }
 
+.clientPopup {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  display: none;
+  background: rgba(0, 0, 0, 0.5);
+}
+.clientPopup .clientPopup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #FFFFFF;
+  width: 500px;
+  height: 200px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+}
+.clientPopup .clientPopup .actions {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 100px;
+}
+
 .formClient {
   background: url("../img/backgroundClient.jpg") center/cover;
   height: 100vh;
@@ -344,6 +375,38 @@ nav label input {
   text-align: center;
 }
 
+#calendarPopup {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  filter: blur(0.5);
+  position: fixed;
+  display: none;
+  z-index: 20;
+}
+#calendarPopup #calendarContainer {
+  position: absolute;
+  display: flex;
+  width: 500px;
+  height: 200px;
+  background: #FFFFFF;
+  border-radius: 15px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#calendarPopup #calendarContainer span {
+  text-align: center;
+}
+#calendarPopup #calendarContainer div {
+  padding-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+}
 .calendar {
   padding-top: 95px;
   background: url("../img/backgroundClient.jpg") center/cover;

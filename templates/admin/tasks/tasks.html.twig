@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>{% block title %}Calendrier{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" integrity="sha256-5veQuRbWaECuYxwap/IOE/DAwNxgm4ikX7nrgsqYp88=" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('assets/style/calendar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/style/style.css') }}">
     <link rel="icon" href="{{ asset('assets/img/logo.jpg')}}">
 </head>
@@ -12,6 +11,15 @@
 {% include 'commons/_nav.html.twig' %}
 <main>
     {% block body %}
+        <div id="calendarPopup">
+            <div id="calendarContainer">
+                <span id="messageInfo"></span>
+                <div class="action">
+                    <button class="deleteButton button" id="deleteTask">Supprimer</button>
+                    <button class="cancelButton button" id="cancel">Retour</button>
+                </div>
+            </div>
+        </div>
 
         <div class="calendar">
             <div id="calendrier">
@@ -24,7 +32,12 @@
 </main>
 {% include 'commons/_footer.html.twig' %}
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js" integrity="sha256-YicH/8aE660iEnJtgll3vT54dJApy3XkYmqNfGVFEzA=" crossorigin="anonymous"></script>
-<script>window.onload= ()=>{
+<script>
+    var eventId = 0
+    var deleteTask = document.querySelector('#deleteTask')
+    var messageInfo = document.getElementById('messageInfo')
+    var messageClose = document.getElementById('cancel')
+    window.onload= ()=>{
 	    let days
         if(innerWidth > 850){
 			days = 5
@@ -57,7 +70,57 @@
             events:{{ data|raw }},
             editable: true,
         })
+        calendar.on('eventChange', (e)=>{
+            let url = `autoUpdate/${e.event.id}`
+            let data = {
+                'start': e.event.start,
+                'end': e.event.end,
+                'allDay': e.event.allDay
+            }
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+
+            })
+        })
+
+        calendar.on('eventClick', (e)=>{
+            messageInfo.append(`Infos de la tache: ${e.event.title}`)
+            calendarPopup.style.display = 'block'
+            eventId = e.event.id
+        })
+
+        deleteTask.addEventListener('click', () =>{
+            let url = `delete/${eventId}`
+            let data = {
+                'delete':'true'
+            }
+            messageInfo.innerHTML = ""
+            calendarPopup.style.display = 'none'
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(() =>  {
+                let event = calendar.getEventById(eventId)
+                event.remove()
+            }).then(()=>{
+                eventId = 0
+            })
+        })
+        messageClose.addEventListener('click', () => {
+                calendarPopup.style.display = 'none'
+                messageInfo.innerHTML = ""
+                eventId = 0
+        }
+        )
+
         calendar.render();
-    }</script>
+    }
+
+
+
+</script>
 </body>
 </html>

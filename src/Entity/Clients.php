@@ -15,19 +15,19 @@ class Clients
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $Name;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $age;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $mail;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $adress;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $tel;
 
     #[ORM\OneToOne(targetEntity: Media::class, cascade: ['persist', 'remove'])]
@@ -115,7 +115,7 @@ class Clients
         return $this->img;
     }
 
-    public function setImg(media $img): self
+    public function setImg(?media $img): self
     {
         $this->img = $img;
 

@@ -69,6 +69,7 @@ img{
   border: rgb(0, 0, 0) 2px solid;
   transition: 0.5s;
   color: #FFFFFF ;
+  cursor: pointer;
   &:hover{
     transform: scale(1.1);
     background: pink;

@@ -7,6 +7,7 @@ use App\Entity\Media;
 use App\Form\ClientsType;
 use App\Repository\ClientsRepository;
 use App\Repository\MediaRepository;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +20,7 @@ class clientController extends AbstractController
   #[Route('/', name:'showClient')]
   public function show (ClientsRepository $clientsRepository)
   {
-    //fin all my "active" clients. And
+    //find all my "active" clients. And
     $clients = $clientsRepository->findBy(['isActive' => true],['Name' => 'ASC']);
     $ages= [];
     //    Get age for each client
@@ -71,7 +72,12 @@ class clientController extends AbstractController
   }
 
   //function for add one client
-  #[Route('/add', name:'addClient', methods:['GET', 'POST'])]
+
+	/**
+	 * @throws \Doctrine\ORM\OptimisticLockException
+	 * @throws \Doctrine\ORM\ORMException
+	 */
+	#[Route('/add', name:'addClient', methods:['GET', 'POST'])]
   public function add (Request $request,
                        MediaRepository $mediaRepository,
                        ClientsRepository $clientsRepository)
@@ -86,7 +92,7 @@ class clientController extends AbstractController
 //    if form submited and is valid and take all info and put on a request for db
     if($form->isSubmitted() && $form->isValid()){
 //      if their is an image on the fomr modelate for db
-      if($form->get('img')->getData() != null) {
+      if($form->get('img')->getData()) {
         $file = $form->get('img')->getData();
         $fileName = md5(uniqid()) . '.' . $file->guessExtension();
         $file->move($this->getParameter('upload_directory'), $fileName);
@@ -114,6 +120,54 @@ class clientController extends AbstractController
 //    set the client inactive on DB
     $client->setIsActive(0);
     $clientsRepository->add($client);
-    return $this->redirectToRoute('showClient');
+	  return new Response('clientArchived', 201);
+  }
+
+  #[Route('/delete/{id}', name:'deletClient')]
+  public function deleteClient($id,
+                               ClientsRepository $clientsRepository,
+                               MediaRepository $mediaRepository)
+  {
+    //find the client
+    $client = $clientsRepository->findOneBy(['id'=>$id]);
+	$img = $mediaRepository->findOneBy(['id'=>0]);
+//    set the client inactive on DB
+    $client->setIsActive(0)
+		->setAge(new \DateTime())
+		->setImg($img)
+		->setName("")
+		->setAdress("")
+		->setMail("")
+		->setTel("");
+    $clientsRepository->add($client);
+    return new Response('ClientDelete', 202);
+  }
+
+  #[Route('/archived', name:'clientsArchived')]
+  public function clientsArchived(ClientsRepository $clientsRepository){
+	  //find all my "inactive" clients.
+	  $clients = $clientsRepository->findBy(['isActive' => false],['Name' => 'ASC']);
+	  $ages= [];
+	  //    Get age for each client
+	  foreach ($clients as $client){
+		  $today = new \DateTime('now');
+		  $clientBirth = $client->getAge();
+		  $diff = date_diff($today,$clientBirth);
+		  $clientAge = $diff->format('%y');
+		  $ages[$client->getId()]=$clientAge;
+	  }
+//	  Return to the vue
+	  return $this->render('admin/clients/clientsArchived.html.twig', ['clients' => $clients, 'ages'=>$ages]);
+  }
+
+  #[Route('/restaure/{id}', name:'restaureClient')]
+  public function restaureClient($id,
+                                 ClientsRepository $clientsRepository){
+	  //find the client
+	  $client = $clientsRepository->findOneBy(['id'=>$id]);
+//    set the client inactive on DB
+	  $client->setIsActive(1);
+	  $clientsRepository->add($client);
+	  return new Response('Client Restauré', 201);
   }
 }

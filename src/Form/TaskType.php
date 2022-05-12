@@ -31,19 +31,29 @@ class TaskType extends AbstractType
               'label' => 'Date de fin'
             ])
             ->add('all_day', CheckboxType::class, [
-              'label' => 'Toute la journé'
+              'label' => 'Toute la journé',
+	            'required' => false
             ])
             ->add('background_Color', ColorType::class,[
               'label'=> 'Couleur du fond',
               'required' => false,
+              'attr' => [
+				  'value' => '#ffffff'
+              ]
             ])
             ->add('border_color', ColorType::class,[
               'label'=> 'Couleur des bordures',
               'required' => false,
+	            'attr' => [
+		            'value' => '#000000'
+	            ]
             ])
             ->add('text_color', ColorType::class,[
               'label'=> 'Couleur du text',
               'required' => false,
+	          'attr' => [
+				  'value' => '#000000'
+	          ]
             ])
             ->add('client',EntityType::class,[
               'label'=>'Client',

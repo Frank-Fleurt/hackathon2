@@ -7,6 +7,7 @@ use App\Form\TaskType;
 use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/todo')]
@@ -57,30 +58,42 @@ class taskController extends AbstractController
    return $this->render('admin/tasks/addTasks.html.twig',['taskForm'=>$form->createView()]);
   }
 
-  #[Route('/edit', name:'editTask', methods:['GET','POST'])]
-  public function editTask(Task $task,
-                           Request $request,
-                           TaskRepository $taskRepository)
+	#[Route('/autoUpdate/{id}', name:'autoUpdate', methods: ['POST','GET'])]
+  public function autoUpdate(Request $request,
+                             TaskRepository $taskRepository,
+                             $id)
   {
-    $form = $this->createForm(TaskType::class, $task);
-    $form->handleRequest($request);
-    if($form->isSubmitted() && $form->isValid()){
-      $taskRepository->add($task);
-      return  $this->redirectToRoute('showTask');
-    }
-    return $this->render('admin/tasks/editTasks.html.twig',['taskForm'=>$form->createView()]);
+//	  get data
+	  $data = json_decode($request->getContent());
+	  $task = $taskRepository->findOneBy(['id' => $id]);
+	   if(!empty($data->start) && empty($data->end) && empty($data->allDay)) {
+		   $task->setDate(new \DateTime($data->start));
+		   $taskRepository->add($task);
+		   return new Response('start ok', 200);
+	   }
+		if(!empty($data->start) && !empty($data->end) && empty($data->allDay)) {
+			$task->setDate(new \DateTime($data->start));
+			$task->setLimitDate(new \DateTime($data->end));
+			$taskRepository->add($task);
+			return new Response('all ok', 201);
+		}
+	   if(!empty($data->allDay)){
+		   $task->setAllDay(true);
+		   $taskRepository->add($task);
+		   return new Response('allDay', 203);
+	   }
+
+	  return new Response('no changes', 500);
+
   }
 
-  #[Route('/{id}', name: 'app_user_delete', methods: ['POST','GET'])]
-  public function delete(Request $request,
-                         Task $task,
-                         TaskRepository $taskRepository)
+  #[Route('/delete/{id}', name:'deleteTask', methods:['POST','GET'])]
+  public function delete (Request $request,
+                          TaskRepository $taskRepository,
+	                      $id)
   {
-
-    if ($this->isCsrfTokenValid('delete'.$task->getId(), $request->request->get('_token'))) {
-      $taskRepository->remove($task);
-    }
-
-    return $this->redirectToRoute('showTask', [], Response::HTTP_SEE_OTHER);
+	  $task = $taskRepository->findOneBy(['id' => $id]);
+	  $taskRepository->remove($task);
+	  return new Response('Tache bien supprimer', 200);
   }
 }
