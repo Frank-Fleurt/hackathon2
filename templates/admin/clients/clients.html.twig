@@ -4,6 +4,9 @@
     <section class="clientList">
         <h1 class="titleH1">Liste des clients</h1>
         <div class="clientContainer">
+            <form action="{{ path('addClient') }}" class="addClient">
+                <button class="button">Ajouter un client</button>
+            </form>
             {% for client in clients %}
                 <div class="clientCard" id="clientCard{{ client.id }}">
                     <div class="img">
@@ -24,17 +27,14 @@
                     </div>
                 </div>
             {% endfor %}
-            <form action="{{ path('addClient') }}" class="addClient">
-                <button class="button">Ajouter un client</button>
-            </form>
             <div id="clientPopupContainer" class="clientPopup">
                 <div class="clientPopup">
                     <span id="clientMessage"></span>
                     <div class="actions">
                         <button class="button" id="definitiveDelete">Supprimer définitivement</button>
                         <button class="button" id="archive">Archiver</button>
-                        <button class="button" id="closePopup">Retour</button>
                     </div>
+                    <button class="button" id="closePopup">Retour</button>
                 </div>
             </div>
         </div>

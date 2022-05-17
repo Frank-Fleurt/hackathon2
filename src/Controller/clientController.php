@@ -135,26 +135,28 @@ class clientController extends AbstractController
     $client->setIsActive(0)
 		->setAge(new \DateTime())
 		->setImg($img)
-		->setName("")
-		->setAdress("")
-		->setMail("")
-		->setTel("");
+		->setName(null)
+		->setAdress(null)
+		->setMail(null)
+		->setTel(null);
     $clientsRepository->add($client);
     return new Response('ClientDelete', 202);
   }
 
   #[Route('/archived', name:'clientsArchived')]
-  public function clientsArchived(ClientsRepository $clientsRepository){
+  public function clientsArchived(ClientsRepository $clientsRepository)
+  {
 	  //find all my "inactive" clients.
-	  $clients = $clientsRepository->findBy(['isActive' => false],['Name' => 'ASC']);
+	  $clients = $clientsRepository->findArchivedClient();
 	  $ages= [];
 	  //    Get age for each client
+
 	  foreach ($clients as $client){
 		  $today = new \DateTime('now');
-		  $clientBirth = $client->getAge();
+		  $clientBirth = new \DateTime($client['age']);
 		  $diff = date_diff($today,$clientBirth);
 		  $clientAge = $diff->format('%y');
-		  $ages[$client->getId()]=$clientAge;
+		  $ages[$client['id']]=$clientAge;
 	  }
 //	  Return to the vue
 	  return $this->render('admin/clients/clientsArchived.html.twig', ['clients' => $clients, 'ages'=>$ages]);
@@ -162,7 +164,8 @@ class clientController extends AbstractController
 
   #[Route('/restaure/{id}', name:'restaureClient')]
   public function restaureClient($id,
-                                 ClientsRepository $clientsRepository){
+                                 ClientsRepository $clientsRepository)
+  {
 	  //find the client
 	  $client = $clientsRepository->findOneBy(['id'=>$id]);
 //    set the client inactive on DB

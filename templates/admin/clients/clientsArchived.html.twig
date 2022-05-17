@@ -2,16 +2,13 @@
 {% block title %} Liste des clients {% endblock %}
 {% block body %}
     <section class="clientList">
-        <h1 class="titleH1">Liste des clients Archiver</h1>
+        <h1 class="titleH1">Liste des clients Archivés</h1>
         <div class="clientContainer">
-            {% for client in clients %}
-                {% if client.name != '' %}
+            {% if clients == [] %}
+                <span> Aucun client Archiver</span>
+            {% else %}
+                {% for client in clients %}
                     <div class="clientCard" id="clientCard{{ client.id }}">
-                        <div class="img">
-                        {% if client.img is not null %}
-                            <img src="{{ asset('upload_directory/' ~ client.img.name) }}" alt="client Img">
-                        {% endif %}
-                        </div>
                         <h3>Nom: {{ client.name }}</h3>
                         <span>Age: {{ ages[client.id] }}</span>
                         {% if client.mail is not null %}
@@ -24,8 +21,9 @@
                             <button class="button actionsButton" data-id="{{ client.id }}" data-name="{{ client.name }}">Actions</button>
                         </div>
                     </div>
-                {% endif %}
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
+
             <form action="{{ path('showClient') }}" class="addClient">
                 <button class="button">Liste des clients</button>
             </form>
@@ -35,8 +33,8 @@
                     <div class="actions">
                         <button class="button" id="unarchive">Restauré</button>
                         <button class="button" id="definitiveDelete">Supprimer définitivement</button>
-                        <button class="button" id="closePopup">Retour</button>
                     </div>
+                    <button class="button" id="closePopup">Retour</button>
                 </div>
             </div>
         </div>

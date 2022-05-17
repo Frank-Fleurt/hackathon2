@@ -22,7 +22,6 @@ function initMap() {
         strokeWeight: 2,
         fillColor: "#efbafa",
         fillOpacity: 0.35,
-        editable: true,
     });
 
     zone.setMap(map);

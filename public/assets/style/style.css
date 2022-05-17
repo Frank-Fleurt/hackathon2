@@ -56,7 +56,7 @@ img {
 .button {
   height: 40px;
   width: 150px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(209, 65, 252, 0.64);
   border-radius: 20px;
   border: black 2px solid;
   transition: 0.5s;
@@ -66,6 +66,7 @@ img {
 .button:hover {
   transform: scale(1.1);
   background: pink;
+  color: black;
 }
 
 .logoNav {
@@ -242,6 +243,7 @@ nav label input {
 }
 .clientList .clientContainer {
   width: 80%;
+  max-width: 990px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -249,6 +251,11 @@ nav label input {
   justify-content: space-evenly;
   background: rgba(0, 0, 0, 0.47);
   border-radius: 25px;
+}
+.clientList .clientContainer span {
+  color: white;
+  padding-top: 20px;
+  display: block;
 }
 @media screen and (max-width: 850px) {
   .clientList .clientContainer {
@@ -313,7 +320,7 @@ nav label input {
   flex-direction: column;
   background: #FFFFFF;
   width: 500px;
-  height: 200px;
+  height: 250px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -321,9 +328,27 @@ nav label input {
   transform: translate(-50%, -50%);
 }
 .clientPopup .clientPopup .actions {
+  width: 80%;
   display: flex;
   justify-content: space-evenly;
-  padding-top: 100px;
+  padding-top: 80px;
+  padding-bottom: 20px;
+}
+.clientPopup .clientPopup span {
+  color: black;
+  text-align: center;
+}
+@media (max-width: 550px) {
+  .clientPopup .clientPopup {
+    width: 91%;
+    height: unset;
+    padding: 10px;
+  }
+  .clientPopup .clientPopup .actions {
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+  }
 }
 
 .formClient {
@@ -340,6 +365,16 @@ nav label input {
   text-align: center;
   background: rgba(0, 0, 0, 0.47);
   color: white;
+}
+@media (max-width: 900px) {
+  .formClient h1 {
+    width: 80%;
+  }
+}
+@media (max-width: 450px) {
+  .formClient h1 {
+    width: 95%;
+  }
 }
 .formClient .img {
   background: rgba(0, 0, 0, 0.47);
@@ -363,16 +398,67 @@ nav label input {
   align-items: center;
   flex-direction: column;
 }
+@media (max-width: 900px) {
+  .formClient form {
+    width: 80%;
+  }
+}
+@media (max-width: 450px) {
+  .formClient form {
+    width: 95%;
+    padding: 20px 0;
+  }
+}
 .formClient form div {
   display: flex;
   flex-direction: column;
   padding: 5px;
   width: 70%;
 }
+@media (max-width: 900px) {
+  .formClient form div {
+    width: 80%;
+  }
+}
+@media (max-width: 450px) {
+  .formClient form div {
+    width: 95%;
+  }
+}
 .formClient form div input {
   border-radius: 5px;
   height: 35px;
   text-align: center;
+}
+.formClient form ul {
+  display: none;
+}
+@media (max-width: 900px) {
+  .formClient form {
+    width: 80%;
+  }
+}
+@media (max-width: 450px) {
+  .formClient form {
+    width: 95%;
+  }
+}
+.formClient .error {
+  width: 50%;
+  padding: 10px 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.47);
+  color: red;
+}
+@media (max-width: 900px) {
+  .formClient .error {
+    width: 80%;
+  }
+}
+@media (max-width: 450px) {
+  .formClient .error {
+    width: 95%;
+  }
 }
 
 #calendarPopup {
@@ -402,11 +488,25 @@ nav label input {
   text-align: center;
 }
 #calendarPopup #calendarContainer div {
-  padding-top: 100px;
+  padding-top: 70px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 75%;
+  padding-bottom: 10px;
+  gap: 20px;
 }
+@media (max-width: 550px) {
+  #calendarPopup #calendarContainer {
+    width: 91%;
+    padding: 10px;
+    height: unset;
+  }
+  #calendarPopup #calendarContainer div {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
 .calendar {
   padding-top: 95px;
   background: url("../img/backgroundClient.jpg") center/cover;
@@ -426,6 +526,7 @@ nav label input {
 @media screen and (max-width: 850px) {
   .calendar #calendrier {
     height: 100%;
+    width: 95%;
   }
   .calendar #calendrier .fc-toolbar-title {
     font-size: 1.5rem;
@@ -450,7 +551,7 @@ nav label input {
 .calendar .links button {
   width: 100%;
   height: 100%;
-  background: rgba(224, 224, 224, 0);
+  background: rgba(209, 65, 252, 0.64);
   border: rgba(224, 224, 224, 0);
   color: #FFFFFF;
   cursor: pointer;
@@ -458,6 +559,7 @@ nav label input {
 .calendar .links:hover {
   transform: scale(1.1);
   background: pink;
+  color: black;
 }
 .calendar .links a {
   color: #FFFFFF;
@@ -498,22 +600,48 @@ nav label input {
 .homeHeader {
   height: 100vh;
   background: url("../img/homeHeaderBg.jpg") center/cover;
-}
-.homeHeader h1 {
-  font-family: Courgette;
-  height: 100%;
-  width: 100%;
-  text-shadow: 0 0 20px black;
-  color: #FFFFFF;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  align-items: center;
+}
+.homeHeader h1 {
+  font-family: Courgette;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  text-shadow: 0 0 20px black;
+  color: #FFFFFF;
   font-size: 5.5vw;
   animation: 1.5s appearFromTop;
+  transform: translateY(200%);
 }
 @media screen and (max-width: 650px) {
   .homeHeader h1 {
-    font-size: 7.5vw;
+    font-size: 3rem;
+  }
+}
+.homeHeader p {
+  transform: translateY(90%);
+  text-shadow: 0 0 5px black;
+  font-family: Courgette;
+  font-size: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 10px;
+  animation: 1.5s appearFromTop;
+}
+@media screen and (max-width: 900px) {
+  .homeHeader p {
+    font-size: 1.25rem;
   }
 }
 .homeHeader ul {
@@ -626,7 +754,7 @@ nav label input {
 }
 #contact .contactContainer .networks div:hover span {
   opacity: 0;
-  animation: 1s linear 0.5s appearOpacity forwards;
+  animation: 0.5s linear 0.5s appearOpacity forwards;
   display: unset;
 }
 @media (max-width: 850px) {

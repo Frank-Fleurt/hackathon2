@@ -31,7 +31,7 @@ class TaskType extends AbstractType
               'label' => 'Date de fin'
             ])
             ->add('all_day', CheckboxType::class, [
-              'label' => 'Toute la journé',
+              'label' => 'Toute la journée',
 	            'required' => false
             ])
             ->add('background_Color', ColorType::class,[
@@ -49,7 +49,7 @@ class TaskType extends AbstractType
 	            ]
             ])
             ->add('text_color', ColorType::class,[
-              'label'=> 'Couleur du text',
+              'label'=> 'Couleur du texte',
               'required' => false,
 	          'attr' => [
 				  'value' => '#000000'

@@ -10,7 +10,13 @@
     padding-bottom: 30px;
   }
   .clientContainer{
+    span{
+      color: white;
+      padding-top: 20px;
+      display: block;
+    }
     width: 80%;
+    max-width: 990px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -41,10 +47,11 @@
           height: 100%;
         }
       }
-      .options{
-          position: absolute;
-          bottom: 10px;
-        button{
+      .options {
+        position: absolute;
+        bottom: 10px;
+  
+        button {
           width: 70px;
           height: 25px;
         }
@@ -78,16 +85,32 @@
     flex-direction: column;
     background: #FFFFFF;
     width: 500px;
-    height: 200px;
+    height: 250px;
     position: fixed;
     top: 50%;
     left: 50%;
     border-radius: 20px;
     transform: translate(-50%,-50%);
     .actions{
+      width: 80%;
       display:flex;
       justify-content: space-evenly;
-      padding-top: 100px;
+      padding-top: 80px;
+      padding-bottom: 20px;
+    }
+    span{
+      color: black;
+      text-align: center;
+    }
+    @media (max-width: 550px){
+      width: 91%;
+      height: unset;
+      padding: 10px;
+      .actions{
+        flex-wrap: wrap;
+        gap: 20px;
+        width: 100%;
+      }
     }
   }
 }
@@ -104,6 +127,12 @@
     text-align: center;
     background: rgba(0, 0, 0, 0.47);
     color: white;
+    @media (max-width: 900px) {
+      width: 80%;
+    }
+    @media (max-width: 450px) {
+      width: 95%;
+    }
   }
   .img{
     background: rgba(0, 0, 0, 0.47);
@@ -126,16 +155,51 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    @media (max-width: 900px) {
+      width: 80%;
+    }
+    @media (max-width: 450px) {
+      width: 95%;
+      padding: 20px 0;
+    }
     div{
       display: flex;
       flex-direction: column;
       padding: 5px;
       width: 70%;
+      @media (max-width: 900px) {
+        width: 80%;
+      }
+      @media (max-width: 450px) {
+        width: 95%;
+      }
       input{
         border-radius: 5px;
         height: 35px;
         text-align: center;
       }
+    }
+    ul{
+      display: none;
+    }
+    @media (max-width: 900px) {
+      width: 80%;
+    }
+    @media (max-width: 450px) {
+      width: 95%;
+    }
+  }
+  .error{
+    width: 50%;
+    padding: 10px 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.47);
+    color: red;
+    @media (max-width: 900px) {
+      width: 80%;
+    }
+    @media (max-width: 450px) {
+      width: 95%;
     }
   }
 }

@@ -19,6 +19,18 @@
                     <img src="{{ asset('upload_directory/' ~  currentImg.name) }}" alt="" width="250px">
                 </div>
             {% endif %}
+            {% if form_errors(clientForm.img)%}
+                <div class="error">Taille ou format de l'image non valide <br> Png ou Jpg attendu et moins de 3Mo</div>
+            {% endif %}
+            {% if form_errors(clientForm.Name) %}
+                <div class="error">Nom, Prénom non valide <br> doit contenir entre 2 et 60 caractères</div>
+            {% endif %}
+            {% if form_errors(clientForm.mail) %}
+                <div class="error">Email non valide <br> doit contenir entre 2 et 60 caractères</div>
+            {% endif %}
+            {% if form_errors(clientForm.adress) %}
+                <div class="error">Adresse non valide <br> doit contenir entre 2 et 60 caractères</div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

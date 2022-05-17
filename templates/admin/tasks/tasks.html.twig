@@ -22,31 +22,48 @@
         </div>
 
         <div class="calendar">
+            <form class="links" action="{{ path('addTask') }}">
+                <button>Ajouter une tâche</button>
+            </form>
             <div id="calendrier">
             </div>
-            <form class="links" action="{{ path('addTask') }}">
-                <button>Ajouté une tâche</button>
-            </form>
         </div>
     {% endblock %}
 </main>
 {% include 'commons/_footer.html.twig' %}
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js" integrity="sha256-YicH/8aE660iEnJtgll3vT54dJApy3XkYmqNfGVFEzA=" crossorigin="anonymous"></script>
-<script>
-    var eventId = 0
-    var deleteTask = document.querySelector('#deleteTask')
-    var messageInfo = document.getElementById('messageInfo')
-    var messageClose = document.getElementById('cancel')
+<script defer>
     window.onload= ()=>{
-	    let days
-        if(innerWidth > 850){
-			days = 5
-        }else{
-			days = 1
+        var eventId = 0
+        var deleteTask = document.querySelector('#deleteTask')
+        var updateTask = document.querySelector('#updateTask')
+        var messageInfo = document.getElementById('messageInfo')
+        var messageClose = document.getElementById('cancel')
+
+        function action(url, data){
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then((res) =>  {
+                let event = calendar.getEventById(eventId)
+                event.remove()
+            }).then(()=>{
+                messageInfo.innerHTML = ""
+                eventId = 0
+                calendarPopup.style.display = 'none'
+            })
         }
-		let buttonOption
-		if(innerWidth > 850){
-			buttonOption = 'timeGridDay,timeGridFourDay,dayGridMonth'
+
+        let days
+        if(innerWidth > 850){
+            days = 5
+        }else{
+            days = 1
+        }
+        let buttonOption
+        if(innerWidth > 850){
+            buttonOption = 'timeGridDay,timeGridFourDay,dayGridMonth'
         }else{ buttonOption = ''}
 
         let calendarElt = document.querySelector('#calendrier')
@@ -67,7 +84,7 @@
                     buttonText: '5 Jours'
                 }
             },
-            events:{{ data|raw }},
+            events: {{ data|raw }},
             editable: true,
         })
         calendar.on('eventChange', (e)=>{
@@ -96,31 +113,19 @@
             let data = {
                 'delete':'true'
             }
-            messageInfo.innerHTML = ""
-            calendarPopup.style.display = 'none'
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).then(() =>  {
-                let event = calendar.getEventById(eventId)
-                event.remove()
-            }).then(()=>{
-                eventId = 0
-            })
+            action(url, data)
+
         })
+
         messageClose.addEventListener('click', () => {
-                calendarPopup.style.display = 'none'
-                messageInfo.innerHTML = ""
-                eventId = 0
-        }
+                    calendarPopup.style.display = 'none'
+                    messageInfo.innerHTML = ""
+                    eventId = 0
+                }
         )
 
         calendar.render();
     }
-
-
-
 </script>
 </body>
 </html>

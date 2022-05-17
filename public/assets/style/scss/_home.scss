@@ -1,17 +1,39 @@
 .homeHeader{
   height: 100vh;
   background: url('../img/homeHeaderBg.jpg') center/cover;
+  @include center;
+  flex-direction: column;
+  align-items: center;
   h1{
     font-family: Courgette;
-    height: 100%;
     width: 100%;
+    margin: auto;
+    text-align: center;
     text-shadow: 0 0 20px black;
     color: #FFFFFF;
-    @include center;
     font-size: 5.5vw;
     animation: 1.5s appearFromTop;
+    transform: translateY(200%);
     @media screen and (max-width: 650px){
-      font-size: 7.5vw;
+      font-size: 3rem;
+    }
+  }
+  p{
+    transform: translateY(90%);
+    text-shadow: 0 0 5px black;
+    font-family: Courgette;
+    font-size: 2vw;
+    @include center;
+    color: white;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 10px;
+    animation: 1.5s appearFromTop;
+    @media screen and (max-width: 900px){
+      font-size: 1.25rem;
     }
   }
   ul{

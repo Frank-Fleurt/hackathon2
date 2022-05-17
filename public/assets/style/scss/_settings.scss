@@ -64,7 +64,7 @@ img{
 .button{
   height: 40px;
   width: 150px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(209, 65, 252, 0.64);
   border-radius: 20px;
   border: rgb(0, 0, 0) 2px solid;
   transition: 0.5s;
@@ -73,5 +73,6 @@ img{
   &:hover{
     transform: scale(1.1);
     background: pink;
+    color: black;
   }
 }

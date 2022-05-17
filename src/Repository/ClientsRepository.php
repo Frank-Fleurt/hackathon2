@@ -45,22 +45,23 @@ class ClientsRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Clients[] Returns an array of Clients objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findArchivedClient(): ?array
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+	    $conn = $this->getEntityManager()->getConnection();
+
+	    $sql = '
+          		SELECT * FROM clients c 
+          		WHERE c.name is not null 
+          		AND c.is_active = 0 
+          		ORDER BY c.name ASC;
+            ';
+	    $stmt = $conn->prepare($sql);
+	    $resultSet = $stmt->executeQuery();
+
+	    // returns an array of arrays (i.e. a raw data set)
+	    return $resultSet->fetchAllAssociative();
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Clients

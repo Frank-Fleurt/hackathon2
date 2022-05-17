@@ -19,12 +19,17 @@ function actionButtons(url, alerteMessage){
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(data)
-	}).then(()=>{
-		eventId = 0
-		clientMessage.innerHTML = ""
-		clientPopupContainer.style.display = 'none'
-		clientCard.remove()
-		alert(alerteMessage)
+	}).then((res)=>{
+		console.log(res)
+		if(res.ok === true){
+			eventId = 0
+			clientMessage.innerHTML = ""
+			clientPopupContainer.style.display = 'none'
+			clientCard.remove()
+			alert(alerteMessage)
+		}else{
+			alert('Le client n\'a pas pue être supprimer veuillez recharger la page.')
+		}
 	})
 }
 
@@ -41,18 +46,18 @@ for(i = 0; i < deleteButton.length ; i++){
 
 definitiveDelete.addEventListener('click', () =>{
 	let url = `delete/${clientId}`
-	actionButtons(url, 'Client supprimer définitivement')
+	actionButtons(url, 'Client supprimer définitivement.')
 })
 
 if(archive){
 	archive.addEventListener('click', () =>{
 		let url = `disable/${clientId}`
-		actionButtons(url, 'Client bien archiver')
+		actionButtons(url, 'Client bien archiver.')
 	})
 }else if(unarchive){
 	unarchive.addEventListener('click', () =>{
 		let url = `restaure/${clientId}`
-		actionButtons(url, 'Client bien restauré')
+		actionButtons(url, 'Client bien restauré.')
 	})
 }
 

@@ -20,7 +20,7 @@
         }
         &:hover span{
           opacity: 0;
-          animation: 1s linear 0.5s appearOpacity forwards;
+          animation: 0.5s linear 0.5s appearOpacity forwards;
           display: unset;
           @media (max-width: 850px) {
             opacity: 1;

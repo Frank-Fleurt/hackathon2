@@ -23,12 +23,20 @@
       text-align: center;
     }
     div{
-      padding-top: 100px;
+      padding-top: 70px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       width: 75%;
-      button{
-      
+      padding-bottom: 10px;
+      gap: 20px;
+    }
+    @media (max-width: 550px) {
+      width: 91%;
+      padding: 10px;
+      height: unset;
+      div{
+        flex-wrap: wrap;
+        width: 100%;
       }
     }
   }
@@ -49,6 +57,7 @@
     height: 80%;
     @media screen and(max-width: 850px) {
       height: 100%;
+      width: 95%;
       .fc-toolbar-title{
         font-size: 1.5rem;
       }
@@ -72,7 +81,7 @@
     button{
       width: 100%;
       height: 100%;
-      background: rgba(224, 224, 224, 0);
+      background: rgba(209, 65, 252, 0.64);
       border: rgba(224, 224, 224, 0);
       color: #FFFFFF;
       cursor: pointer;
@@ -80,6 +89,7 @@
     &:hover {
       transform: scale(1.1);
       background: pink;
+      color: black;
     }
     a {
       color: #FFFFFF;
