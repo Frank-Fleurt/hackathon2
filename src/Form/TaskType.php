@@ -24,11 +24,11 @@ class TaskType extends AbstractType
         $builder
             ->add('date', DateTimeType::class,[
               'date_widget' => 'single_text',
-              'label' => 'Date de début'
+              'label' => 'Date de début *'
             ])
             ->add('limitDate', DateTimeType::class,[
               'date_widget' => 'single_text',
-              'label' => 'Date de fin'
+              'label' => 'Date de fin *'
             ])
             ->add('all_day', CheckboxType::class, [
               'label' => 'Toute la journée',
@@ -56,7 +56,7 @@ class TaskType extends AbstractType
 	          ]
             ])
             ->add('client',EntityType::class,[
-              'label'=>'Client',
+              'label'=>'Client *',
               'class' => Clients::class,
 //              'query_builder'=> function (EntityRepository $er) {
 //                return $er->createQueryBuilder('i')->orderBy('i.name','ASC');
@@ -64,7 +64,7 @@ class TaskType extends AbstractType
               'choice_label' => 'name'
             ])
             ->add('type', EntityType::class,[
-              'label' => 'Catégorie',
+              'label' => 'Catégorie *',
               'class' => Type::class,
 //              'query_builder'=> function (EntityRepository $er) {
 //                return $er->createQueryBuilder('v')->orderBy('v.name','ASC');

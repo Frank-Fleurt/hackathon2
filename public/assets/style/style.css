@@ -598,7 +598,7 @@ nav label input {
 }
 
 .homeHeader {
-  height: 100vh;
+  height: 95vh;
   background: url("../img/homeHeaderBg.jpg") center/cover;
   display: flex;
   justify-content: center;
@@ -615,15 +615,15 @@ nav label input {
   color: #FFFFFF;
   font-size: 5.5vw;
   animation: 1.5s appearFromTop;
-  transform: translateY(200%);
+  transform: translateY(300%);
 }
 @media screen and (max-width: 650px) {
   .homeHeader h1 {
     font-size: 3rem;
+    transform: translateY(150%);
   }
 }
 .homeHeader p {
-  transform: translateY(90%);
   text-shadow: 0 0 5px black;
   font-family: Courgette;
   font-size: 2vw;
@@ -638,6 +638,7 @@ nav label input {
   border-radius: 20px;
   padding: 10px;
   animation: 1.5s appearFromTop;
+  transform: translateY(55px);
 }
 @media screen and (max-width: 900px) {
   .homeHeader p {

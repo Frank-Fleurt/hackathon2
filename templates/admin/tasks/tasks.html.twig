@@ -40,18 +40,22 @@
         var messageInfo = document.getElementById('messageInfo')
         var messageClose = document.getElementById('cancel')
 
-        function action(url, data){
+        function action(url, data, remove){
             fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             }).then((res) =>  {
-                let event = calendar.getEventById(eventId)
-                event.remove()
+                if(remove){
+                    let event = calendar.getEventById(eventId)
+                    event.remove()
+                }
             }).then(()=>{
-                messageInfo.innerHTML = ""
-                eventId = 0
-                calendarPopup.style.display = 'none'
+                if(remove) {
+                    messageInfo.innerHTML = ""
+                    eventId = 0
+                    calendarPopup.style.display = 'none'
+                }
             })
         }
 
@@ -94,12 +98,7 @@
                 'end': e.event.end,
                 'allDay': e.event.allDay
             }
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-
-            })
+            action(url, data, false)
         })
 
         calendar.on('eventClick', (e)=>{
@@ -113,7 +112,7 @@
             let data = {
                 'delete':'true'
             }
-            action(url, data)
+            action(url, data, true)
 
         })
 

@@ -5,7 +5,7 @@
         <h1 class="titleH1">Liste des clients Archivés</h1>
         <div class="clientContainer">
             {% if clients == [] %}
-                <span> Aucun client Archiver</span>
+                <span> Aucun client Archivé</span>
             {% else %}
                 {% for client in clients %}
                     <div class="clientCard" id="clientCard{{ client.id }}">

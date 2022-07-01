@@ -21,7 +21,7 @@ class ClientsType extends AbstractType
     {
         $builder
             ->add('Name', TextType::class, [
-              'label' => 'Nom prénom',
+              'label' => 'Nom prénom *',
               'constraints' => [
                 new Length([
                   'min' => 2,
@@ -32,7 +32,7 @@ class ClientsType extends AbstractType
               ]
             ])
             ->add('age', DateType::class, [
-              'label' => 'Date de naissance',
+              'label' => 'Date de naissance *',
               'widget' => 'single_text',
 
             ])
@@ -49,7 +49,7 @@ class ClientsType extends AbstractType
 	            ]
             ])
             ->add('adress',TextType::class, [
-              'label' => 'Adresse postale',
+              'label' => 'Adresse postale *',
 	            'constraints' => [
 		            new Length([
 			            'min' => 2,
@@ -60,7 +60,7 @@ class ClientsType extends AbstractType
 	            ]
             ])
             ->add('tel', TelType::class, [
-              'label' => 'Téléphone'
+				'label' => 'Téléphone *',
             ])
             ->add('img', FileType::class,[
               'data_class' => null,

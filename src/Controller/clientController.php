@@ -23,15 +23,27 @@ class clientController extends AbstractController
     //find all my "active" clients. And
     $clients = $clientsRepository->findBy(['isActive' => true],['Name' => 'ASC']);
     $ages= [];
+	$phone = [];
     //    Get age for each client
     foreach ($clients as $client){
-      $today = new \DateTime('now');
+	  $oldClientPhone = $client->getTel();
+	  $today = new \DateTime('now');
       $clientBirth = $client->getAge();
       $diff = date_diff($today,$clientBirth);
       $clientAge = $diff->format('%y');
       $ages[$client->getId()]=$clientAge;
+	  if(strlen($oldClientPhone) === 10){
+		  $newClientPhone = substr($oldClientPhone, 0, 2) .' ';
+		  $newClientPhone .= substr($oldClientPhone, 2, 2) .' ';
+		  $newClientPhone .= substr($oldClientPhone, 4, 2) .' ';
+		  $newClientPhone .= substr($oldClientPhone, 6, 2) .' ';
+		  $newClientPhone .= substr($oldClientPhone, 8, 2) .' ';
+	  }else{
+		  $newClientPhone = $oldClientPhone;
+	  }
+	  $phone[$client->getId()]=$newClientPhone;
     }
-    return $this->render('admin/clients/clients.html.twig', ['clients' => $clients, 'ages'=>$ages]);
+    return $this->render('admin/clients/clients.html.twig', ['clients' => $clients, 'ages' => $ages, 'phone' => $phone]);
   }
 
   //edit on of my client on route /adlin/client/edit/id wehere id passed on "post" by a form
@@ -135,10 +147,10 @@ class clientController extends AbstractController
     $client->setIsActive(0)
 		->setAge(new \DateTime())
 		->setImg($img)
-		->setName(null)
-		->setAdress(null)
-		->setMail(null)
-		->setTel(null);
+		->setName("")
+		->setAdress("")
+		->setMail("")
+		->setTel("");
     $clientsRepository->add($client);
     return new Response('ClientDelete', 202);
   }

@@ -14,13 +14,13 @@
                         <img src="{{ asset('upload_directory/' ~ client.img.name) }}" alt="client Img">
                     {% endif %}
                     </div>
-                    <h3>Nom: {{ client.name }}</h3>
-                    <span>Age: {{ ages[client.id] }}</span>
+                    <h3>Nom : {{ client.name }}</h3>
+                    <span>Age : {{ ages[client.id] }}</span>
                     {% if client.mail is not null %}
-                        <span>Mail: {{ client.mail }}</span>
+                        <span>Mail : {{ client.mail }}</span>
                     {% endif %}
-                    <span>Adresse: {{ client.adress }}</span>
-                    <span>Téléphone: {{ client.tel }}</span>
+                    <span>Adresse : {{ client.adress }}</span>
+                    <span>Téléphone : {{ phone[client.id] }}</span>
                     <div class="options">
                         <button class="button"><a href="{{ path('editClient',{'id' : client.id}) }}"><div class="edit">Modifier</div></a></button>
                         <button class="button actionsButton" data-id="{{ client.id }}" data-name="{{ client.name }}">Supprimer</button>

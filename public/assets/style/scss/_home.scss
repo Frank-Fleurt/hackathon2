@@ -1,5 +1,5 @@
 .homeHeader{
-  height: 100vh;
+  height: 95vh;
   background: url('../img/homeHeaderBg.jpg') center/cover;
   @include center;
   flex-direction: column;
@@ -13,13 +13,13 @@
     color: #FFFFFF;
     font-size: 5.5vw;
     animation: 1.5s appearFromTop;
-    transform: translateY(200%);
+    transform: translateY(300%);
     @media screen and (max-width: 650px){
       font-size: 3rem;
+      transform: translateY(150%);
     }
   }
   p{
-    transform: translateY(90%);
     text-shadow: 0 0 5px black;
     font-family: Courgette;
     font-size: 2vw;
@@ -35,6 +35,7 @@
     @media screen and (max-width: 900px){
       font-size: 1.25rem;
     }
+    transform: translateY(55px);
   }
   ul{
     width: 100%;

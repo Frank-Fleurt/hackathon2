@@ -11,8 +11,9 @@
                 {{ form_row(clientForm.adress) }}
                 {{ form_row(clientForm.tel) }}
                 {{ form_row(clientForm.img) }}
+                <div class="obligation">* Champs obligatoirs</div>
                 {{ form_widget(clientForm.Envoyer) }}
-                {{ form_end(clientForm) }}
+            {{ form_end(clientForm) }}
             {% if currentImg is not null %}
                 <div class="img">
                     <h2>Image actuelle</h2>

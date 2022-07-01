@@ -28,7 +28,7 @@ function actionButtons(url, alerteMessage){
 			clientCard.remove()
 			alert(alerteMessage)
 		}else{
-			alert('Le client n\'a pas pue être supprimer veuillez recharger la page.')
+			alert('Le client n\'a pas pu être supprimé veuillez recharger la page.')
 		}
 	})
 }
@@ -46,13 +46,13 @@ for(i = 0; i < deleteButton.length ; i++){
 
 definitiveDelete.addEventListener('click', () =>{
 	let url = `delete/${clientId}`
-	actionButtons(url, 'Client supprimer définitivement.')
+	actionButtons(url, 'Client supprimé définitivement.')
 })
 
 if(archive){
 	archive.addEventListener('click', () =>{
 		let url = `disable/${clientId}`
-		actionButtons(url, 'Client bien archiver.')
+		actionButtons(url, 'Client bien archivé.')
 	})
 }else if(unarchive){
 	unarchive.addEventListener('click', () =>{
