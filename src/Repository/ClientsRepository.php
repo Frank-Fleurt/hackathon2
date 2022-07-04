@@ -51,7 +51,7 @@ class ClientsRepository extends ServiceEntityRepository
 
 	    $sql = '
           		SELECT * FROM clients c 
-          		WHERE c.name is not null 
+          		WHERE c.name <> ""
           		AND c.is_active = 0 
           		ORDER BY c.name ASC;
             ';

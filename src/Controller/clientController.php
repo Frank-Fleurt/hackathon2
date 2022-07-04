@@ -75,7 +75,7 @@ class clientController extends AbstractController
           //pull request on my DB
           $mediaRepository->add($media);
         }
-        //Pull all info of the fomr on my DB
+        //Pull all info of the form on my DB
         $clientsRepository->add($client);
 //        redirect to my show function
         return $this->redirectToRoute('showClient');
