@@ -519,7 +519,7 @@ nav label input {
 .calendar #calendrier {
   background: white;
   width: 80%;
-  margin: 0 auto;
+  margin: 0 auto 50px;
   border-radius: 5px;
   height: 80%;
 }
@@ -536,7 +536,7 @@ nav label input {
   }
   .calendar #calendrier.fc .fc-scroller::-webkit-scrollbar {
     display: none;
-    width: 0px;
+    width: 0;
   }
 }
 .calendar .links {
@@ -607,7 +607,7 @@ nav label input {
   align-items: center;
 }
 .homeHeader h1 {
-  font-family: Courgette;
+  font-family: Courgette, serif;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -615,7 +615,7 @@ nav label input {
   color: #FFFFFF;
   font-size: 5.5vw;
   animation: 1.5s appearFromTop;
-  transform: translateY(300%);
+  transform: translateY(280%);
 }
 @media screen and (max-width: 650px) {
   .homeHeader h1 {
@@ -625,7 +625,6 @@ nav label input {
 }
 .homeHeader p {
   text-shadow: 0 0 5px black;
-  font-family: Courgette;
   font-size: 2vw;
   display: flex;
   justify-content: center;
@@ -653,6 +652,8 @@ nav label input {
 .homeH2 {
   text-align: center;
   margin: 100px 0 50px 0;
+  font-family: Courgette, serif;
+  font-size: 1.85rem;
 }
 
 #activities {
@@ -710,6 +711,7 @@ nav label input {
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 4px #f9d4ff;
+  margin-bottom: 20px;
 }
 @media screen and (max-width: 650px) {
   #activities .homeDoing div .img {
@@ -747,7 +749,7 @@ nav label input {
   height: 40px;
   border-radius: 150px;
   transition: 0.5s;
-  top: 0px;
+  top: 0;
   overflow: hidden;
 }
 #contact .contactContainer .networks div:hover {
@@ -804,8 +806,8 @@ nav label input {
   }
 }
 #contact .contact {
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 50% 50%;
   position: relative;
   height: 50px;
 }
@@ -847,10 +849,10 @@ nav label input {
 }
 @media (max-width: 850px) {
   #contact .contact {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
     height: 100px;
-    gap: 15px;
   }
 }
 
@@ -914,6 +916,20 @@ nav label input {
   justify-content: center;
   margin: 25px 0 0 0;
 }
+.enregistrement section form .button {
+  height: 40px;
+  width: 150px;
+  margin: 10px auto 0;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  border: black 2px solid;
+  transition: 0.5s;
+  color: #FFFFFF;
+}
+.enregistrement section form .button:hover {
+  transform: scale(1.1);
+  background: pink;
+}
 @media (max-width: 500px) {
   .enregistrement section form {
     width: 90%;
@@ -944,7 +960,8 @@ nav label input {
   }
 }
 .enregistrement .error {
-  color: red;
+  color: #ffffff;
+  text-shadow: 0 0 0 black;
   position: absolute;
   top: 20%;
   left: 50%;
@@ -1040,7 +1057,8 @@ nav label input {
   }
 }
 .login .error {
-  color: red;
+  color: #ffffff;
+  text-shadow: 0 0 0 black;
   position: absolute;
   top: 20%;
   left: 50%;
@@ -1085,7 +1103,7 @@ footer .footerContainer .footerNav ul:before {
 footer .footerContainer .footerContact {
   display: flex;
   justify-content: center;
-  width: 500px;
+  width: 90%;
   padding: 10px;
   margin: auto;
 }
@@ -1107,6 +1125,7 @@ footer .footerContainer .footerContact .phone {
 footer .footerContainer .footerContact .phone span {
   font-size: 0.75rem;
   font-family: Courgette, sans-serif;
+  margin-left: 10px;
 }
 footer .footerContainer .footerContact .mail {
   width: 150px;
@@ -1116,6 +1135,7 @@ footer .footerContainer .footerContact .mail {
 footer .footerContainer .footerContact .mail span {
   font-size: 0.75rem;
   font-family: Courgette, sans-serif;
+  margin-left: 10px;
 }
 @media (max-width: 850px) {
   footer .footerContainer .footerContact {

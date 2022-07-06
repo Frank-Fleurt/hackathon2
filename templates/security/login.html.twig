@@ -6,6 +6,7 @@
 {% block body %}
     <section>
         {% if error %}
+            {{ error }}
             <div class="alert alert-danger error">Mot de passe ou email Invalide</div>
         {% endif %}
         <h2 class="h3 mb-3 font-weight-normal">Se connecter</h2>

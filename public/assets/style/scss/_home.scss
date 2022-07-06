@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
   h1{
-    font-family: Courgette;
+    font-family: Courgette, serif;
     width: 100%;
     margin: auto;
     text-align: center;
@@ -13,7 +13,7 @@
     color: #FFFFFF;
     font-size: 5.5vw;
     animation: 1.5s appearFromTop;
-    transform: translateY(300%);
+    transform: translateY(280%);
     @media screen and (max-width: 650px){
       font-size: 3rem;
       transform: translateY(150%);
@@ -21,7 +21,6 @@
   }
   p{
     text-shadow: 0 0 5px black;
-    font-family: Courgette;
     font-size: 2vw;
     @include center;
     color: white;
@@ -45,6 +44,8 @@
 .homeH2{
   text-align: center;
   margin: 100px 0 50px 0;
+  font-family: Courgette, serif;
+  font-size: 1.85rem ;
 }
 
 

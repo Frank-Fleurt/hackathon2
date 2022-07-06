@@ -13,7 +13,7 @@
         height: 40px;
         border-radius: 150px;
         transition: 0.5s;
-        top: 0px;
+        top: 0;
         overflow: hidden;
         &:hover{
           width: 240px;
@@ -64,8 +64,8 @@
     }
   }
   .contact{
-    display: flex;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 50% 50%;
     position: relative;
     height: 50px;
     div{
@@ -101,11 +101,11 @@
         width: unset;
       }
     }
-    @media (max-width: 850px) {
-      flex-direction: column;
-      align-items: center;
+    @media (max-width: 850px){
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      justify-items: center;
       height: 100px;
-      gap: 15px;
     }
   }
 }

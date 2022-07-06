@@ -16,8 +16,7 @@
         {{ form_end(userForm) }}
         {% if error != '' %}
             <div class="alert alert-danger error">Email invalid ou deja utilise</div>*
-        {% endif %}
-        {% if form_errors(userForm.password.first) %}
+        {% elseif form_errors(userForm.password.first) %}
             <div class="alert alert-danger error">Mot de passe non correspondant</div>
         {% endif %}
         <div class="actions">

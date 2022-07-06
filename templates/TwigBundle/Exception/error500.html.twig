@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %} Erreur 404 {% end block %}
+{% block body %}
+	<h1>Page not found</h1>
+
+	<p>
+		Un problèmes est survenue lors de votre opération veuillez s'il vous plait <a href="{{ path('home') }}"> retourner à l'accueil</a> <br>
+	</p>
+{% endblock %}

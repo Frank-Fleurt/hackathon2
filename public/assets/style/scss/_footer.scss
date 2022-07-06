@@ -38,7 +38,7 @@ footer{
 		.footerContact{
 			display: flex;
 			justify-content: center;
-			width: 500px;
+			width: 90%;
 			padding: 10px;
 			margin: auto;
 			div{
@@ -58,6 +58,7 @@ footer{
 				span{
 					font-size: 0.75rem;
 					font-family: Courgette, sans-serif;
+					margin-left: 10px;
 				}
 			}
 			.mail{
@@ -67,6 +68,7 @@ footer{
 				span{
 					font-size: 0.75rem;
 					font-family: Courgette, sans-serif;
+					margin-left: 10px;
 				}
 			}
 			@media (max-width: 850px) {

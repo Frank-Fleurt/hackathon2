@@ -51,6 +51,20 @@
 				justify-content: center;
 				margin: 25px 0 0 0;
 			}
+			.button{
+				height: 40px;
+				width: 150px;
+				margin: 10px auto 0;
+				background: rgba(0, 0, 0, 0.6);
+				border-radius: 20px;
+				border: rgb(0, 0, 0) 2px solid;
+				transition: 0.5s;
+				color: #FFFFFF ;
+				&:hover{
+					transform: scale(1.1);
+					background: pink;
+				}
+			}
 			@media (max-width: 500px) {
 				width: 90%;
 			}
@@ -79,7 +93,8 @@
 		}
 	}
 	.error{
-		color: red;
+		color: #ffffff;
+		text-shadow: 0 0 0 black;
 		position: absolute;
 		top: 20%;
 		left: 50%;transform: translateX(-50%);
